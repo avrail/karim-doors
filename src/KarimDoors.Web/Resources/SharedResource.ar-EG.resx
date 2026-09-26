@@ -189,4 +189,24 @@
   <data name="The field {0} must be a string with a minimum length of {2} and a maximum length of {1}." xml:space="preserve"><value>يجب أن يتراوح طول {0} بين {2} و{1} أحرف.</value></data>
   <data name="Toggle navigation" xml:space="preserve"><value>إظهار القائمة</value></data>
   <data name="Toggle theme" xml:space="preserve"><value>تغيير المظهر</value></data>
+  <data name="Quotation" xml:space="preserve"><value>عرض سعر</value></data>
+  <data name="New quotation" xml:space="preserve"><value>عرض سعر جديد</value></data>
+  <data name="Save draft quotation" xml:space="preserve"><value>حفظ مسودة عرض السعر</value></data>
+  <data name="Customer" xml:space="preserve"><value>العميل</value></data>
+  <data name="Project" xml:space="preserve"><value>المشروع</value></data>
+  <data name="Door items" xml:space="preserve"><value>بنود الأبواب</value></data>
+  <data name="Select a door" xml:space="preserve"><value>اختر بابًا</value></data>
+  <data name="No quotations yet." xml:space="preserve"><value>لا توجد عروض أسعار بعد.</value></data>
+  <data name="Number" xml:space="preserve"><value>الرقم</value></data>
+  <data name="Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="Revision" xml:space="preserve"><value>المراجعة</value></data>
+  <data name="Dimensions" xml:space="preserve"><value>المقاسات</value></data>
+  <data name="Quoted unit price" xml:space="preserve"><value>سعر الوحدة المعروض</value></data>
+  <data name="Quoted total" xml:space="preserve"><value>إجمالي العرض</value></data>
+  <data name="Door catalog" xml:space="preserve"><value>كتالوج الأبواب</value></data>
+  <data name="Reference cases use the workbook dimensions shown below." xml:space="preserve"><value>الحالات المرجعية تعتمد المقاسات الموضحة من ملف الإكسل.</value></data>
+  <data name="Code" xml:space="preserve"><value>الكود</value></data>
+  <data name="Fire rating" xml:space="preserve"><value>مقاومة الحريق</value></data>
+  <data name="Priced reference" xml:space="preserve"><value>مسعّر من المرجع</value></data>
+  <data name="Cost breakdown pending" xml:space="preserve"><value>تفصيل التكلفة غير متاح</value></data>
 </root>

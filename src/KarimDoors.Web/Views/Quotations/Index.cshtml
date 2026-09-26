@@ -1,0 +1,15 @@
+@model IReadOnlyList<Quotation>
+@{ ViewData["Title"] = "Quotations"; }
+<div class="page-intro"><div><span class="eyebrow">@L["Workspace"]</span><h1>@L["Quotations"]</h1></div><a class="btn primary" asp-action="Create">@L["New quotation"]</a></div>
+<section class="panel" style="padding:1.5rem">
+@if (Model.Count == 0) { <p>@L["No quotations yet."]</p> }
+else
+{
+    <table class="data-table"><thead><tr><th>@L["Number"]</th><th>@L["Customer"]</th><th>@L["Project"]</th><th>@L["Status"]</th></tr></thead><tbody>
+    @foreach (var quote in Model)
+    {
+        <tr><td><a asp-action="Details" asp-route-id="@quote.Id">@quote.Number</a></td><td>@quote.Customer.Name</td><td>@quote.Project?.Name</td><td>@quote.Status</td></tr>
+    }
+    </tbody></table>
+}
+</section>

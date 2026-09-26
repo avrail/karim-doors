@@ -1,0 +1,12 @@
+@model IReadOnlyList<DoorTemplate>
+@{ ViewData["Title"] = "Door catalog"; }
+<div class="page-intro"><div><span class="eyebrow">@L["Master data"]</span><h1>@L["Door catalog"]</h1><p>@L["Reference cases use the workbook dimensions shown below."]</p></div></div>
+<section class="panel" style="padding:1.5rem">
+<table class="data-table"><thead><tr><th>@L["Code"]</th><th>@L["Door template"]</th><th>@L["Dimensions"]</th><th>@L["Fire rating"]</th><th>@L["Status"]</th></tr></thead><tbody>
+@foreach (var door in Model)
+{
+    var version = door.Versions.OrderByDescending(x => x.Version).FirstOrDefault();
+    <tr><td>@door.Code</td><td>@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? door.NameAr : door.NameEn)</td><td>@(version is null ? "—" : $"{version.DefaultWidthMm} × {version.DefaultHeightMm} mm")</td><td>@(version is null || version.FireRatingMinutes == 0 ? "—" : $"FD{version.FireRatingMinutes}")</td><td>@(door.IsActive ? L["Priced reference"].Value : L["Cost breakdown pending"].Value)</td></tr>
+}
+</tbody></table>
+</section>

@@ -8,6 +8,7 @@ public sealed class DoorTemplateVersion : EffectiveDatedEntity
     public DoorTemplate DoorTemplate { get; set; } = null!;
     public int DefaultWidthMm { get; set; }
     public int DefaultHeightMm { get; set; }
+    public bool ReferenceSizeOnly { get; set; }
     public int FireRatingMinutes { get; set; }
     public string? SourceReference { get; set; }
 

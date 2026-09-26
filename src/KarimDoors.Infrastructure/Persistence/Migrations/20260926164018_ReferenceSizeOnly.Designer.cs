@@ -4,6 +4,7 @@ using KarimDoors.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KarimDoors.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(KarimDoorsDbContext))]
-    partial class KarimDoorsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260926164018_ReferenceSizeOnly")]
+    partial class ReferenceSizeOnly
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

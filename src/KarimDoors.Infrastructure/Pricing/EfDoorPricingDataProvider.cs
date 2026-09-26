@@ -29,6 +29,19 @@ public sealed class EfDoorPricingDataProvider(KarimDoorsDbContext dbContext) : I
             .FirstOrDefaultAsync(cancellationToken)
             ?? throw new InvalidOperationException($"No active version of '{request.DoorTemplateCode}' exists for {at:d}.");
 
+        if (templateVersion.ReferenceSizeOnly &&
+            (request.WidthMm != templateVersion.DefaultWidthMm || request.HeightMm != templateVersion.DefaultHeightMm))
+        {
+            throw new InvalidOperationException(
+                $"{request.DoorTemplateCode} is validated only at {templateVersion.DefaultWidthMm} × {templateVersion.DefaultHeightMm} mm.");
+        }
+
+        if (request.PricingProfileCode.StartsWith("WB-", StringComparison.Ordinal) &&
+            request.PricingProfileCode != $"WB-{template.Code}")
+            throw new InvalidOperationException("The workbook pricing profile belongs to a different door reference case.");
+        if (templateVersion.ReferenceSizeOnly && request.PricingProfileCode != $"WB-{template.Code}")
+            throw new InvalidOperationException("This door reference case requires its matching workbook pricing profile.");
+
         var profile = await dbContext.PricingProfiles
             .AsNoTracking()
             .SingleOrDefaultAsync(x => x.Code == request.PricingProfileCode && x.IsActive, cancellationToken)

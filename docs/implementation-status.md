@@ -2,6 +2,10 @@
 
 ## Implemented
 
+- Eleven historical workbook cases validated in SQL Server. D29 and D029 are one model.
+- Door catalog with inactive placeholders for models lacking detailed cost sheets.
+- Multi-item draft quotations with saved calculation snapshots and workbook quotation rounding.
+
 - .NET 10 layered solution.
 - Domain entities for materials, pricing history, door templates, pricing profiles, customers, projects, quotations, snapshots, settings and audit logs.
 - Effective-date resolution for prices, door-template versions and pricing-profile versions.

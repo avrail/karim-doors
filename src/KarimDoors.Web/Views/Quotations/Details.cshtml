@@ -1,0 +1,13 @@
+@model Quotation
+@{ ViewData["Title"] = "Quotation"; var revision = Model.Revisions.OrderByDescending(x => x.RevisionNumber).First(); }
+<div class="page-intro"><div><span class="eyebrow">@L["Quotation"]</span><h1>@Model.Number</h1><p>@Model.Customer.Name — @Model.Project?.Name</p></div><a class="btn" asp-action="Index">@L["Quotations"]</a></div>
+<section class="panel" style="padding:1.5rem">
+<p>@L["Status"]: @Model.Status · @L["Revision"] @revision.RevisionNumber</p>
+<table class="data-table"><thead><tr><th>@L["Door template"]</th><th>@L["Dimensions"]</th><th>@L["Quantity"]</th><th>@L["Calculated unit price"]</th><th>@L["Quoted unit price"]</th><th>@L["Total"]</th></tr></thead><tbody>
+@foreach (var item in revision.Items)
+{
+    <tr><td>@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? item.DoorTemplate.NameAr : item.DoorTemplate.NameEn)</td><td>@item.WidthMm × @item.HeightMm mm</td><td>@item.Quantity</td><td>@item.CalculatedUnitPrice.ToString("N2")</td><td>@item.FinalUnitPrice.ToString("N2")</td><td>@((item.FinalUnitPrice * item.Quantity).ToString("N2")) EGP</td></tr>
+}
+</tbody></table>
+<h2>@L["Quoted total"]: @(revision.Items.Sum(x => x.FinalUnitPrice * x.Quantity).ToString("N2")) EGP</h2>
+</section>

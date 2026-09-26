@@ -29,6 +29,7 @@ appsettings.*.Local.json
 ## Source business spreadsheets are local reference data only.
 docs/source-data/*.xlsx
 docs/source-data/*.xls
+docs/source-data/*.json
 
 ## Generated logs
 logs/
