@@ -99,6 +99,11 @@
   <data name="Back to dashboard" xml:space="preserve"><value>العودة إلى لوحة التحكم</value></data>
   <data name="We couldn't complete your request." xml:space="preserve"><value>تعذر إكمال طلبك.</value></data>
   <data name="Door template" xml:space="preserve"><value>نموذج الباب</value></data>
+  <data name="Door model" xml:space="preserve"><value>نوع الباب</value></data>
+  <data name="Workbook reference models are priced only at their shown dimensions." xml:space="preserve"><value>النماذج المرجعية من ملف الإكسل مسعّرة للمقاس المعروض فقط.</value></data>
+  <data name="Select a door from the chosen project." xml:space="preserve"><value>اختر نوع باب تابعًا للمشروع المحدد.</value></data>
+  <data name="Choose a project, then one of its door models. Prices use the selected pricing date." xml:space="preserve"><value>اختر المشروع أولًا ثم نوع الباب التابع له. تُستخدم الأسعار السارية في تاريخ التسعير المحدد.</value></data>
+  <data name="The project groups the door models from that customer's workbook." xml:space="preserve"><value>يجمع المشروع نماذج الأبواب الواردة في ملف إكسل العميل.</value></data>
   <data name="Pricing profile" xml:space="preserve"><value>ملف التسعير</value></data>
   <data name="Width (mm)" xml:space="preserve"><value>العرض (مم)</value></data>
   <data name="Height (mm)" xml:space="preserve"><value>الارتفاع (مم)</value></data>

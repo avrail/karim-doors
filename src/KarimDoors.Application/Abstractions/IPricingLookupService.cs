@@ -4,6 +4,6 @@ namespace KarimDoors.Application.Abstractions;
 
 public interface IPricingLookupService
 {
-    Task<IReadOnlyList<LookupOption>> GetDoorTemplatesAsync(CancellationToken cancellationToken = default);
-    Task<IReadOnlyList<LookupOption>> GetPricingProfilesAsync(CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<PricingProjectOption>> GetProjectsAsync(CancellationToken cancellationToken = default);
+    Task<IReadOnlyList<DoorTemplateOption>> GetDoorTemplatesAsync(CancellationToken cancellationToken = default);
 }

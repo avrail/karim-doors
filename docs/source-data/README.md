@@ -4,6 +4,8 @@ Run `tools/extract_workbook.py` with Python and `openpyxl` to create the ignored
 
 Redcon D29 and D029 are one model, stored as `RED-D29-1050`. FD60 and FD90 models remain inactive because their detailed source sheets are absent. Imported prices are historical references.
 
+The importer associates reference doors with the Redcon or Hassan Allam source project. The calculator filters available door models by project and applies the case's matching pricing profile automatically.
+
 Place the original pricing/breakdown spreadsheets in this folder on your development machine.
 
 Excel files in this directory are intentionally ignored by Git because the GitHub repository is public and the source files may contain confidential business pricing information.

@@ -4,6 +4,7 @@ using KarimDoors.Domain.Entities;
 using KarimDoors.Domain.Enums;
 using KarimDoors.Infrastructure.Persistence;
 using KarimDoors.Infrastructure.Pricing;
+using KarimDoors.Infrastructure.Seeding;
 using Microsoft.EntityFrameworkCore;
 
 var path = args.Length > 0 ? args[0] : Path.Combine("docs", "source-data", "Break Dowen -10-2022.reference-cases.json");
@@ -15,6 +16,28 @@ using var document = JsonDocument.Parse(File.ReadAllText(path));
 var options = new DbContextOptionsBuilder<KarimDoorsDbContext>().UseSqlServer(connection).Options;
 await using var db = new KarimDoorsDbContext(options);
 await db.Database.MigrateAsync();
+await new DatabaseSeeder(db).SeedAsync();
+
+var hassan = await db.Customers.SingleOrDefaultAsync(x => x.Code == "HASSAN-ALLAM")
+    ?? throw new InvalidOperationException("The seeded Hassan Allam customer is required.");
+var hassanProject = await db.Projects.SingleOrDefaultAsync(x => x.CustomerId == hassan.Id && x.Code == "SOURCE-2022")
+    ?? throw new InvalidOperationException("The seeded Hassan Allam source project is required.");
+if (hassanProject.Name == "2022 source workbook reference") hassanProject.Name = "Hassan Allam";
+var redcon = await db.Customers.SingleOrDefaultAsync(x => x.Code == "REDCON");
+if (redcon == null)
+{
+    redcon = new Customer { Code = "REDCON", Name = "Redcon" };
+    db.Customers.Add(redcon);
+}
+var redconProject = redcon.Id == 0 ? null : await db.Projects.SingleOrDefaultAsync(x => x.CustomerId == redcon.Id && x.Code == "RED-2022");
+if (redconProject == null)
+{
+    redconProject = new Project { Customer = redcon, Code = "RED-2022", Name = "Redcon" };
+    db.Projects.Add(redconProject);
+}
+await db.SaveChangesAsync();
+var projectIds = new Dictionary<string, int> { ["RED"] = redconProject.Id, ["HA"] = hassanProject.Id };
+db.ChangeTracker.Clear();
 
 var imported = 0;
 var skipped = 0;
@@ -23,6 +46,13 @@ foreach (var item in document.RootElement.GetProperty("cases").EnumerateArray())
     var code = S(item, "code");
     if (await db.DoorTemplates.AnyAsync(x => x.Code == code))
     {
+        var existing = await db.DoorTemplates.SingleAsync(x => x.Code == code);
+        if (existing.ProjectId == null)
+        {
+            existing.ProjectId = projectIds[S(item, "customer")];
+            await db.SaveChangesAsync();
+            db.ChangeTracker.Clear();
+        }
         var check = new PricingRequest(code, code == "HA-D04" ? "HA-2022" : $"WB-{code}",
             I(item, "widthMm"), I(item, "heightMm"), 1, DateTime.UtcNow);
         var calculated = new PricingEngine().Calculate(await new EfDoorPricingDataProvider(db).ResolveAsync(check), 1).UnitCalculatedPrice;
@@ -44,6 +74,7 @@ foreach (var item in document.RootElement.GetProperty("cases").EnumerateArray())
         var template = new DoorTemplate
         {
             Code = code,
+            ProjectId = projectIds[customer],
             NameEn = $"{customer} {code[(customer.Length + 1)..]}",
             NameAr = $"{(customer == "RED" ? "ريدكون" : "حسن علام")} {code[(customer.Length + 1)..]}",
             IsActive = true
@@ -150,10 +181,20 @@ var pending = new (string Code, string Customer, int Width, int Fire)[]
 };
 foreach (var (code, customer, width, fire) in pending)
 {
-    if (await db.DoorTemplates.AnyAsync(x => x.Code == code)) continue;
+    var existingPending = await db.DoorTemplates.SingleOrDefaultAsync(x => x.Code == code);
+    if (existingPending != null)
+    {
+        if (existingPending.ProjectId == null)
+        {
+            existingPending.ProjectId = projectIds[customer == "Redcon" ? "RED" : "HA"];
+            await db.SaveChangesAsync();
+        }
+        continue;
+    }
     var template = new DoorTemplate
     {
         Code = code,
+        ProjectId = projectIds[customer == "Redcon" ? "RED" : "HA"],
         NameEn = $"{customer} {code.Split('-')[1]}",
         NameAr = $"{(customer == "Redcon" ? "ريدكون" : "حسن علام")} {code.Split('-')[1]}",
         IsActive = false

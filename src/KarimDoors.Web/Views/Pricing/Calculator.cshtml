@@ -3,8 +3,48 @@
     ViewData["Title"] = "Price Calculator";
 }
 
+@section Scripts {
+<script>
+(() => {
+    const project = document.getElementById('ProjectId');
+    const door = document.getElementById('DoorTemplateCode');
+    const width = document.getElementById('WidthMm');
+    const height = document.getElementById('HeightMm');
+    const note = document.getElementById('door-size-note');
+    function applyDoor(resetSize) {
+        const option = door.selectedOptions[0];
+        if (!option) return;
+        if (resetSize) {
+            width.value = option.dataset.width;
+            height.value = option.dataset.height;
+        }
+        const fixed = option.dataset.fixedSize === 'true';
+        width.readOnly = fixed;
+        height.readOnly = fixed;
+        note.hidden = !fixed;
+    }
+    function filterDoors(resetSize) {
+        for (const option of door.options) {
+            const matches = option.dataset.projectId === project.value;
+            option.hidden = !matches;
+            option.disabled = !matches;
+        }
+        if (resetSize || !door.selectedOptions.length || door.selectedOptions[0].disabled) {
+            const first = [...door.options].find(option => !option.disabled);
+            if (first) door.value = first.value;
+            resetSize = true;
+        }
+        applyDoor(resetSize);
+    }
+    project.addEventListener('change', () => filterDoors(true));
+    door.addEventListener('change', () => applyDoor(true));
+    filterDoors(false);
+})();
+</script>
+}
+
 <div class="page-intro">
-    <div><span class="eyebrow">@L["LIVE COSTING"]</span><h1>@L["Door Price Calculator"]</h1><p>@L["Dimensions, material prices and commercial rules are resolved using the selected pricing date."]</p></div>
+    <div><span class="eyebrow">@L["LIVE COSTING"]</span><h1>@L["Door Price Calculator"]</h1><p>@L["Choose a project, then one of its door models. Prices use the selected pricing date."]</p></div>
     <span class="badge">@L["Historical-aware"]</span>
 </div>
 
@@ -20,25 +60,27 @@
             <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
 
             <div class="field">
-                <label asp-for="DoorTemplateCode">@L["Door template"]</label>
-                <select asp-for="DoorTemplateCode">
-                    @foreach (var item in Model.DoorTemplates)
+                <label asp-for="ProjectId">@L["Project"]</label>
+                <select asp-for="ProjectId">
+                    @foreach (var project in Model.Projects)
                     {
-                        <option value="@item.Value">@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? item.ArabicText ?? item.Text : item.Text)</option>
+                        <option value="@project.Id">@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? project.Code == "RED-2022" ? "ريدكون" : project.Code == "SOURCE-2022" ? "حسن علام" : project.Name : project.Name)</option>
                     }
                 </select>
-                <span asp-validation-for="DoorTemplateCode"></span>
+                <span asp-validation-for="ProjectId"></span>
+                <small>@L["The project groups the door models from that customer's workbook."]</small>
             </div>
 
             <div class="field">
-                <label asp-for="PricingProfileCode">@L["Pricing profile"]</label>
-                <select asp-for="PricingProfileCode">
-                    @foreach (var item in Model.PricingProfiles)
+                <label asp-for="DoorTemplateCode">@L["Door model"]</label>
+                <select asp-for="DoorTemplateCode">
+                    @foreach (var item in Model.DoorTemplates)
                     {
-                        <option value="@item.Value">@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? L[item.Text].Value : item.Text)</option>
+                        <option value="@item.Code" data-project-id="@item.ProjectId" data-width="@item.WidthMm" data-height="@item.HeightMm" data-fixed-size="@item.ReferenceSizeOnly.ToString().ToLowerInvariant()">@item.Code · @(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? item.NameAr : item.NameEn) · @item.WidthMm × @item.HeightMm mm</option>
                     }
                 </select>
-                <span asp-validation-for="PricingProfileCode"></span>
+                <span asp-validation-for="DoorTemplateCode"></span>
+                <small id="door-size-note">@L["Workbook reference models are priced only at their shown dimensions."]</small>
             </div>
 
             <div class="form-grid two">

@@ -8,7 +8,7 @@ public sealed class DoorsController(KarimDoorsDbContext db) : Controller
 {
     public async Task<IActionResult> Index(CancellationToken ct)
     {
-        var doors = await db.DoorTemplates.AsNoTracking().Include(x => x.Versions)
+        var doors = await db.DoorTemplates.AsNoTracking().Include(x => x.Project).Include(x => x.Versions)
             .OrderBy(x => x.Code).ToListAsync(ct);
         return View(doors);
     }

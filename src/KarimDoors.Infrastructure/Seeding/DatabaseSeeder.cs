@@ -124,11 +124,13 @@ public sealed class DatabaseSeeder(KarimDoorsDbContext dbContext)
         dbContext.PricingProfiles.Add(profile);
 
         var customer = new Customer { Code = "HASSAN-ALLAM", Name = "Hassan Allam" };
-        customer.Projects.Add(new Project
+        var sourceProject = new Project
         {
             Code = "SOURCE-2022",
-            Name = "2022 source workbook reference"
-        });
+            Name = "Hassan Allam"
+        };
+        customer.Projects.Add(sourceProject);
+        template.Project = sourceProject;
         dbContext.Customers.Add(customer);
 
         var currencySetting = new SystemSettingDefinition
