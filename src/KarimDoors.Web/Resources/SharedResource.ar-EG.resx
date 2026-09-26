@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Karim Doors" xml:space="preserve"><value>كريم للأبواب</value></data>
+  <data name="Pricing Intelligence" xml:space="preserve"><value>إدارة التسعير</value></data>
+  <data name="Workspace" xml:space="preserve"><value>مساحة العمل</value></data>
+  <data name="Dashboard" xml:space="preserve"><value>لوحة التحكم</value></data>
+  <data name="Price Calculator" xml:space="preserve"><value>حاسبة الأسعار</value></data>
+  <data name="Master data" xml:space="preserve"><value>البيانات الأساسية</value></data>
+  <data name="Materials &amp; Prices" xml:space="preserve"><value>المواد والأسعار</value></data>
+  <data name="System Settings" xml:space="preserve"><value>إعدادات النظام</value></data>
+  <data name="Control" xml:space="preserve"><value>الرقابة</value></data>
+  <data name="Audit Log" xml:space="preserve"><value>سجل التدقيق</value></data>
+  <data name="History protected" xml:space="preserve"><value>السجل محفوظ</value></data>
+  <data name="Changes create new versions." xml:space="preserve"><value>التغييرات تنشئ إصدارات جديدة.</value></data>
+  <data name="Door Cost Management" xml:space="preserve"><value>إدارة تكلفة الأبواب</value></data>
+  <data name="Development" xml:space="preserve"><value>التطوير</value></data>
+  <data name="PRICING ENGINE · VERSIONED DATA" xml:space="preserve"><value>محرك التسعير · بيانات مؤرخة</value></data>
+  <data name="Know what every door costs — and why" xml:space="preserve"><value>اعرف تكلفة كل باب وأسبابها</value></data>
+  <data name="Calculate door" xml:space="preserve"><value>احسب سعر الباب</value></data>
+  <data name="Review material prices" xml:space="preserve"><value>راجع أسعار المواد</value></data>
+  <data name="Door templates" xml:space="preserve"><value>نماذج الأبواب</value></data>
+  <data name="Pricing profiles" xml:space="preserve"><value>ملفات التسعير</value></data>
+  <data name="Quotations" xml:space="preserve"><value>عروض الأسعار</value></data>
+  <data name="Foundation" xml:space="preserve"><value>الأساس</value></data>
+  <data name="History-first architecture" xml:space="preserve"><value>تصميم يحفظ السجل</value></data>
+  <data name="Active" xml:space="preserve"><value>نشط</value></data>
+  <data name="Effective-dated prices" xml:space="preserve"><value>أسعار مؤرخة</value></data>
+  <data name="Versioned door rules" xml:space="preserve"><value>قواعد أبواب بإصدارات</value></data>
+  <data name="Immutable quotation snapshots" xml:space="preserve"><value>نسخ محفوظة لعروض الأسعار</value></data>
+  <data name="Excel validation case" xml:space="preserve"><value>حالة التحقق من إكسل</value></data>
+  <data name="Reference size" xml:space="preserve"><value>المقاس المرجعي</value></data>
+  <data name="Material cost" xml:space="preserve"><value>تكلفة المواد</value></data>
+  <data name="Dry cost" xml:space="preserve"><value>التكلفة المباشرة</value></data>
+  <data name="Calculated price" xml:space="preserve"><value>السعر المحسوب</value></data>
+  <data name="LIVE COSTING" xml:space="preserve"><value>حساب التكلفة المباشر</value></data>
+  <data name="Door Price Calculator" xml:space="preserve"><value>حاسبة أسعار الأبواب</value></data>
+  <data name="Historical-aware" xml:space="preserve"><value>يعتمد الأسعار التاريخية</value></data>
+  <data name="Input" xml:space="preserve"><value>المدخلات</value></data>
+  <data name="Door configuration" xml:space="preserve"><value>مواصفات الباب</value></data>
+  <data name="Calculate price" xml:space="preserve"><value>احسب السعر</value></data>
+  <data name="Result" xml:space="preserve"><value>النتيجة</value></data>
+  <data name="Ready to calculate" xml:space="preserve"><value>جاهز للحساب</value></data>
+  <data name="Calculated unit price" xml:space="preserve"><value>سعر الوحدة المحسوب</value></data>
+  <data name="Materials" xml:space="preserve"><value>المواد</value></data>
+  <data name="Manufacturing" xml:space="preserve"><value>التصنيع</value></data>
+  <data name="Transport" xml:space="preserve"><value>النقل</value></data>
+  <data name="Installation" xml:space="preserve"><value>التركيب</value></data>
+  <data name="Administrative" xml:space="preserve"><value>المصاريف الإدارية</value></data>
+  <data name="Profit" xml:space="preserve"><value>الربح</value></data>
+  <data name="Total" xml:space="preserve"><value>الإجمالي</value></data>
+  <data name="Profile" xml:space="preserve"><value>الملف</value></data>
+  <data name="Traceability" xml:space="preserve"><value>التتبع</value></data>
+  <data name="Cost breakdown" xml:space="preserve"><value>تفاصيل التكلفة</value></data>
+  <data name="Component" xml:space="preserve"><value>المكوّن</value></data>
+  <data name="Material" xml:space="preserve"><value>المادة</value></data>
+  <data name="Measurement" xml:space="preserve"><value>الكمية المقاسة</value></data>
+  <data name="Unit price" xml:space="preserve"><value>سعر الوحدة</value></data>
+  <data name="Waste" xml:space="preserve"><value>الهالك</value></data>
+  <data name="Cost" xml:space="preserve"><value>التكلفة</value></data>
+  <data name="Price version" xml:space="preserve"><value>إصدار السعر</value></data>
+  <data name="Non-fire" xml:space="preserve"><value>غير مقاوم للحريق</value></data>
+  <data name="Material Price Catalog" xml:space="preserve"><value>دليل أسعار المواد</value></data>
+  <data name="Category" xml:space="preserve"><value>الفئة</value></data>
+  <data name="Unit" xml:space="preserve"><value>الوحدة</value></data>
+  <data name="Current price" xml:space="preserve"><value>السعر الحالي</value></data>
+  <data name="Version" xml:space="preserve"><value>الإصدار</value></data>
+  <data name="Effective from" xml:space="preserve"><value>ساري من</value></data>
+  <data name="History →" xml:space="preserve"><value>السجل ←</value></data>
+  <data name="History" xml:space="preserve"><value>السجل</value></data>
+  <data name="Price versions" xml:space="preserve"><value>إصدارات الأسعار</value></data>
+  <data name="New price version" xml:space="preserve"><value>إصدار سعر جديد</value></data>
+  <data name="Create price version" xml:space="preserve"><value>أنشئ إصدار السعر</value></data>
+  <data name="VERSIONED CHANGE" xml:space="preserve"><value>تغيير بإصدار جديد</value></data>
+  <data name="← Materials" xml:space="preserve"><value>المواد →</value></data>
+  <data name="← Price history" xml:space="preserve"><value>سجل الأسعار →</value></data>
+  <data name="CONFIGURATION" xml:space="preserve"><value>الإعدادات</value></data>
+  <data name="Versioned System Settings" xml:space="preserve"><value>إعدادات النظام بإصدارات</value></data>
+  <data name="Setting" xml:space="preserve"><value>الإعداد</value></data>
+  <data name="Type" xml:space="preserve"><value>النوع</value></data>
+  <data name="Pricing sensitive" xml:space="preserve"><value>يؤثر في التسعير</value></data>
+  <data name="Current value" xml:space="preserve"><value>القيمة الحالية</value></data>
+  <data name="Yes" xml:space="preserve"><value>نعم</value></data>
+  <data name="No" xml:space="preserve"><value>لا</value></data>
+  <data name="New version" xml:space="preserve"><value>إصدار جديد</value></data>
+  <data name="Create setting version" xml:space="preserve"><value>أنشئ إصدار الإعداد</value></data>
+  <data name="← Settings" xml:space="preserve"><value>الإعدادات →</value></data>
+  <data name="← Setting history" xml:space="preserve"><value>سجل الإعداد →</value></data>
+  <data name="Current" xml:space="preserve"><value>حالي</value></data>
+  <data name="Timeline" xml:space="preserve"><value>التسلسل الزمني</value></data>
+  <data name="Entity" xml:space="preserve"><value>الكيان</value></data>
+  <data name="Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="Reason" xml:space="preserve"><value>السبب</value></data>
+  <data name="User" xml:space="preserve"><value>المستخدم</value></data>
+  <data name="When" xml:space="preserve"><value>الوقت</value></data>
+  <data name="Back to dashboard" xml:space="preserve"><value>العودة إلى لوحة التحكم</value></data>
+  <data name="We couldn't complete your request." xml:space="preserve"><value>تعذر إكمال طلبك.</value></data>
+  <data name="Door template" xml:space="preserve"><value>نموذج الباب</value></data>
+  <data name="Pricing profile" xml:space="preserve"><value>ملف التسعير</value></data>
+  <data name="Width (mm)" xml:space="preserve"><value>العرض (مم)</value></data>
+  <data name="Height (mm)" xml:space="preserve"><value>الارتفاع (مم)</value></data>
+  <data name="Quantity" xml:space="preserve"><value>العدد</value></data>
+  <data name="Pricing date" xml:space="preserve"><value>تاريخ التسعير</value></data>
+  <data name="Reason for change" xml:space="preserve"><value>سبب التغيير</value></data>
+  <data name="Supplier reference" xml:space="preserve"><value>مرجع المورد</value></data>
+  <data name="A price change creates a new version instead of overwriting the old price." xml:space="preserve"><value>تغيير السعر ينشئ إصدارًا جديدًا بدلًا من استبدال السعر السابق.</value></data>
+  <data name="Calculate from dimensions and materials, preserve every historical price, and reproduce a quotation exactly as it was calculated." xml:space="preserve"><value>احسب السعر من المقاسات والمواد، واحتفظ بكل سعر تاريخي، وأعد عرض السعر كما حُسب تمامًا.</value></data>
+  <data name="cost &amp; margin policies" xml:space="preserve"><value>سياسات التكلفة وهامش الربح</value></data>
+  <data name="effective-dated rules" xml:space="preserve"><value>قواعد ذات تواريخ سريان</value></data>
+  <data name="History is immutable." xml:space="preserve"><value>السجل لا يُعدّل.</value></data>
+  <data name="Know what every door costs — and" xml:space="preserve"><value>اعرف تكلفة كل باب</value></data>
+  <data name="Please return to the dashboard and try again. Detailed errors are available in Development mode." xml:space="preserve"><value>يرجى العودة إلى لوحة التحكم والمحاولة مرة أخرى. تتوفر تفاصيل الخطأ في وضع التطوير.</value></data>
+  <data name="Settings that can influence pricing are stored as effective-dated versions, not mutable single values." xml:space="preserve"><value>تُحفظ الإعدادات المؤثرة في التسعير كإصدارات ذات تواريخ سريان، وليس كقيم قابلة للاستبدال.</value></data>
+  <data name="versioned price catalog" xml:space="preserve"><value>دليل أسعار بإصدارات</value></data>
+  <data name="why" xml:space="preserve"><value>وأسبابه</value></data>
+  <data name="Why versions?" xml:space="preserve"><value>لماذا الإصدارات؟</value></data>
+  <data name="Current prices are effective-dated. Updating a price creates a new version and preserves the full timeline." xml:space="preserve"><value>الأسعار الحالية مرتبطة بتاريخ السريان. تحديث السعر ينشئ إصدارًا جديدًا ويحفظ التسلسل الكامل.</value></data>
+  <data name="Dimensions, material prices and commercial rules are resolved using the selected pricing date." xml:space="preserve"><value>تُحدد المقاسات وأسعار المواد والقواعد التجارية حسب تاريخ التسعير المختار.</value></data>
+  <data name="Select a template and dimensions. The engine will use the price versions effective on your pricing date." xml:space="preserve"><value>اختر نموذجًا والمقاسات. سيستخدم المحرك إصدارات الأسعار السارية في تاريخ التسعير.</value></data>
+  <data name="We couldn't complete that request." xml:space="preserve"><value>تعذر إكمال الطلب.</value></data>
+  <data name="Versions" xml:space="preserve"><value>الإصدارات</value></data>
+  <data name="High-value configuration changes are recorded with before/after values and a reason." xml:space="preserve"><value>تُسجل التغييرات المهمة مع القيم السابقة والجديدة وسبب التغيير.</value></data>
+  <data name="No audit events yet. Change a material price or setting to create the first event." xml:space="preserve"><value>لا توجد أحداث تدقيق بعد. غيّر سعر مادة أو إعدادًا لإنشاء أول حدث.</value></data>
+  <data name="Every row records the material price version used by the calculation." xml:space="preserve"><value>يسجل كل صف إصدار سعر المادة المستخدم في الحساب.</value></data>
+  <data name="History is preserved." xml:space="preserve"><value>السجل محفوظ.</value></data>
+  <data name="The previous setting version will be closed automatically." xml:space="preserve"><value>سيُغلق إصدار الإعداد السابق تلقائيًا.</value></data>
+  <data name="The current price will automatically end-date." xml:space="preserve"><value>سينتهي سريان السعر الحالي تلقائيًا.</value></data>
+  <data name="This creates a new version; it does not overwrite the previous price." xml:space="preserve"><value>ينشئ هذا إصدارًا جديدًا ولا يستبدل السعر السابق.</value></data>
+  <data name="Latest" xml:space="preserve"><value>الأحدث</value></data>
+  <data name="items" xml:space="preserve"><value>بنود</value></data>
+  <data name="A new price version was created. Historical versions are preserved." xml:space="preserve"><value>أُنشئ إصدار سعر جديد. الإصدارات السابقة محفوظة.</value></data>
+  <data name="A new setting version was created. The previous value remains in history." xml:space="preserve"><value>أُنشئ إصدار إعداد جديد. تبقى القيمة السابقة في السجل.</value></data>
+  <data name="New Setting Version" xml:space="preserve"><value>إصدار إعداد جديد</value></data>
+  <data name="Material Price History" xml:space="preserve"><value>سجل أسعار المواد</value></data>
+  <data name="Setting History" xml:space="preserve"><value>سجل الإعداد</value></data>
+  <data name="Value" xml:space="preserve"><value>القيمة</value></data>
+  <data name="Currency" xml:space="preserve"><value>العملة</value></data>
+  <data name="Supplier quote / PO / email reference" xml:space="preserve"><value>عرض المورد / أمر الشراء / مرجع البريد</value></data>
+  <data name="Why is this price changing?" xml:space="preserve"><value>لماذا يتغير هذا السعر؟</value></data>
+  <data name="Why is this setting changing?" xml:space="preserve"><value>لماذا يتغير هذا الإعداد؟</value></data>
+  <data name="No reason recorded" xml:space="preserve"><value>لم يُسجل سبب</value></data>
+  <data name="New Material Price" xml:space="preserve"><value>سعر مادة جديد</value></data>
+  <data name="Material History" xml:space="preserve"><value>سجل المادة</value></data>
+  <data name="Something went wrong" xml:space="preserve"><value>حدث خطأ</value></data>
+  <data name="Approved calculations remain reproducible even after future configuration changes." xml:space="preserve"><value>يمكن إعادة إنتاج الحسابات المعتمدة حتى بعد تغييرات الإعدادات اللاحقة.</value></data>
+  <data name="Dimension rules and component definitions keep their historical versions." xml:space="preserve"><value>تحتفظ قواعد المقاسات وتعريفات المكونات بإصداراتها السابقة.</value></data>
+  <data name="Seeded from the source workbook as the first automated regression case." xml:space="preserve"><value>أُدخلت من ملف إكسل المصدر كأول حالة تحقق آلي.</value></data>
+  <data name="immutable revisions" xml:space="preserve"><value>مراجعات لا تُعدّل</value></data>
+  <data name="Material profile" xml:space="preserve"><value>بيانات المادة</value></data>
+  <data name="Pricing unit" xml:space="preserve"><value>وحدة التسعير</value></data>
+  <data name="Old quotations keep resolving the price effective on their calculation date." xml:space="preserve"><value>تستخدم عروض الأسعار السابقة السعر الساري بتاريخ حسابها.</value></data>
+  <data name="Reference" xml:space="preserve"><value>المرجع</value></data>
+  <data name="Default pricing currency" xml:space="preserve"><value>عملة التسعير الافتراضية</value></data>
+  <data name="Default currency used by new pricing profiles." xml:space="preserve"><value>العملة الافتراضية المستخدمة في ملفات التسعير الجديدة.</value></data>
+  <data name="Text" xml:space="preserve"><value>نص</value></data>
+  <data name="Decimal" xml:space="preserve"><value>عدد عشري</value></data>
+  <data name="Integer" xml:space="preserve"><value>عدد صحيح</value></data>
+  <data name="Boolean" xml:space="preserve"><value>منطقي</value></data>
+  <data name="Json" xml:space="preserve"><value>JSON</value></data>
+  <data name="Timber" xml:space="preserve"><value>خشب</value></data>
+  <data name="Sheet" xml:space="preserve"><value>ألواح</value></data>
+  <data name="Veneer" xml:space="preserve"><value>قشرة خشبية</value></data>
+  <data name="Foam" xml:space="preserve"><value>فوم</value></data>
+  <data name="Gasket" xml:space="preserve"><value>جوان</value></data>
+  <data name="Paint" xml:space="preserve"><value>دهان</value></data>
+  <data name="Packaging" xml:space="preserve"><value>تغليف</value></data>
+  <data name="FireCore" xml:space="preserve"><value>قلب مقاوم للحريق</value></data>
+  <data name="Hardware" xml:space="preserve"><value>إكسسوارات</value></data>
+  <data name="Other" xml:space="preserve"><value>أخرى</value></data>
+  <data name="CubicMeter" xml:space="preserve"><value>متر مكعب</value></data>
+  <data name="SquareMeter" xml:space="preserve"><value>متر مربع</value></data>
+  <data name="LinearMeter" xml:space="preserve"><value>متر طولي</value></data>
+  <data name="Piece" xml:space="preserve"><value>قطعة</value></data>
+  <data name="Kilogram" xml:space="preserve"><value>كيلوغرام</value></data>
+  <data name="Liter" xml:space="preserve"><value>لتر</value></data>
+  <data name="Fixed" xml:space="preserve"><value>ثابت</value></data>
+  <data name="Calculate a door" xml:space="preserve"><value>احسب سعر باب</value></data>
+  <data name="Old quotations keep resolving to the price that was effective on their calculation date." xml:space="preserve"><value>تستخدم عروض الأسعار السابقة السعر الساري بتاريخ حسابها.</value></data>
+  <data name="The current price will automatically end at this date." xml:space="preserve"><value>سينتهي سريان السعر الحالي تلقائيًا في هذا التاريخ.</value></data>
+  <data name="Initial price from source workbook." xml:space="preserve"><value>السعر الأولي من ملف إكسل المصدر.</value></data>
+  <data name="Initial value from source workbook." xml:space="preserve"><value>القيمة الأولية من ملف إكسل المصدر.</value></data>
+  <data name="HA-2022 · Hassan Allam 2022" xml:space="preserve"><value>HA-2022 · حسن علام 2022</value></data>
+  <data name="The {0} field is required." xml:space="preserve"><value>حقل {0} مطلوب.</value></data>
+  <data name="The field {0} must be between {1} and {2}." xml:space="preserve"><value>يجب أن تكون قيمة {0} بين {1} و{2}.</value></data>
+  <data name="The field {0} must be a string with a maximum length of {1}." xml:space="preserve"><value>يجب ألا يتجاوز طول {0} ‏{1} حرفًا.</value></data>
+  <data name="The field {0} must be a string with a minimum length of {2} and a maximum length of {1}." xml:space="preserve"><value>يجب أن يتراوح طول {0} بين {2} و{1} أحرف.</value></data>
+  <data name="Toggle navigation" xml:space="preserve"><value>إظهار القائمة</value></data>
+  <data name="Toggle theme" xml:space="preserve"><value>تغيير المظهر</value></data>
+</root>

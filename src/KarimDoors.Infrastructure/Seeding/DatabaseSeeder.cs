@@ -11,22 +11,32 @@ public sealed class DatabaseSeeder(KarimDoorsDbContext dbContext)
 
     public async Task SeedAsync(CancellationToken cancellationToken = default)
     {
-        if (await dbContext.DoorTemplates.AnyAsync(cancellationToken))
+        var existingTemplate = await dbContext.DoorTemplates
+            .SingleOrDefaultAsync(x => x.Code == "HA-D04", cancellationToken);
+        if (existingTemplate is not null &&
+            await dbContext.DoorTemplateVersions.AnyAsync(x => x.DoorTemplateId == existingTemplate.Id, cancellationToken))
+            return;
+        if (existingTemplate is null && await dbContext.DoorTemplates.AnyAsync(cancellationToken))
             return;
 
-        var mouski = Material("TIMBER-MOUSKI", "Mouski timber", "خشب موسكي", MaterialCategory.Timber, MaterialUnit.CubicMeter, 9500m);
-        var oak = Material("TIMBER-OAK", "Oak timber", "خشب أرو", MaterialCategory.Timber, MaterialUnit.CubicMeter, 23500m);
-        var mdf6 = Material("MDF-6", "MDF 6 mm sheet", "MDF 6 مم", MaterialCategory.Sheet, MaterialUnit.Piece, 215m);
-        var mdf18 = Material("MDF-18", "MDF 18 mm sheet", "MDF 18 مم", MaterialCategory.Sheet, MaterialUnit.Piece, 450m);
-        var veneer = Material("VENEER-OAK", "Oak veneer with glue", "قشرة أرو بالغراء", MaterialCategory.Veneer, MaterialUnit.SquareMeter, 55m);
-        var foam = Material("FOAM", "Foam", "فوم", MaterialCategory.Foam, MaterialUnit.Piece, 75m);
-        var gasket = Material("WEATHER-GASKET", "Weather gasket", "جوان Weather gasket", MaterialCategory.Gasket, MaterialUnit.LinearMeter, 15m);
-        var paint = Material("PAINT", "Paint materials", "خامات دهانات", MaterialCategory.Paint, MaterialUnit.SquareMeter, 75m);
-        var packaging = Material("PACKAGING-CARDBOARD", "Packaging cardboard", "كارتون تغليف", MaterialCategory.Packaging, MaterialUnit.Kilogram, 22.5m);
+        var existingMaterials = existingTemplate is null
+            ? null
+            : await dbContext.Materials.ToDictionaryAsync(x => x.Code, cancellationToken);
 
-        dbContext.Materials.AddRange(mouski, oak, mdf6, mdf18, veneer, foam, gasket, paint, packaging);
+        var mouski = existingMaterials is null ? Material("TIMBER-MOUSKI", "Mouski timber", "خشب موسكي", MaterialCategory.Timber, MaterialUnit.CubicMeter, 9500m) : existingMaterials["TIMBER-MOUSKI"];
+        var oak = existingMaterials is null ? Material("TIMBER-OAK", "Oak timber", "خشب أرو", MaterialCategory.Timber, MaterialUnit.CubicMeter, 23500m) : existingMaterials["TIMBER-OAK"];
+        var mdf6 = existingMaterials is null ? Material("MDF-6", "MDF 6 mm sheet", "MDF 6 مم", MaterialCategory.Sheet, MaterialUnit.Piece, 215m) : existingMaterials["MDF-6"];
+        var mdf18 = existingMaterials is null ? Material("MDF-18", "MDF 18 mm sheet", "MDF 18 مم", MaterialCategory.Sheet, MaterialUnit.Piece, 450m) : existingMaterials["MDF-18"];
+        var veneer = existingMaterials is null ? Material("VENEER-OAK", "Oak veneer with glue", "قشرة أرو بالغراء", MaterialCategory.Veneer, MaterialUnit.SquareMeter, 55m) : existingMaterials["VENEER-OAK"];
+        var foam = existingMaterials is null ? Material("FOAM", "Foam", "فوم", MaterialCategory.Foam, MaterialUnit.Piece, 75m) : existingMaterials["FOAM"];
+        var gasket = existingMaterials is null ? Material("WEATHER-GASKET", "Weather gasket", "جوان Weather gasket", MaterialCategory.Gasket, MaterialUnit.LinearMeter, 15m) : existingMaterials["WEATHER-GASKET"];
+        var paint = existingMaterials is null ? Material("PAINT", "Paint materials", "خامات دهانات", MaterialCategory.Paint, MaterialUnit.SquareMeter, 75m) : existingMaterials["PAINT"];
+        var packaging = existingMaterials is null ? Material("PACKAGING-CARDBOARD", "Packaging cardboard", "كارتون تغليف", MaterialCategory.Packaging, MaterialUnit.Kilogram, 22.5m) : existingMaterials["PACKAGING-CARDBOARD"];
 
-        var template = new DoorTemplate
+        if (existingMaterials is null)
+            dbContext.Materials.AddRange(mouski, oak, mdf6, mdf18, veneer, foam, gasket, paint, packaging);
+
+        var template = existingTemplate ?? new DoorTemplate
         {
             Code = "HA-D04",
             NameEn = "Hassan Allam D04",
@@ -82,6 +92,13 @@ public sealed class DatabaseSeeder(KarimDoorsDbContext dbContext)
         foreach (var component in components)
         {
             version.Components.Add(component);
+        }
+
+        template.Versions.Add(version);
+        if (existingTemplate is not null)
+        {
+            await dbContext.SaveChangesAsync(cancellationToken);
+            return;
         }
 
         dbContext.DoorTemplates.Add(template);

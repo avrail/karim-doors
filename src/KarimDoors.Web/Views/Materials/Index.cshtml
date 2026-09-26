@@ -3,25 +3,25 @@
     ViewData["Title"] = "Materials & Prices";
 }
 <div class="page-intro">
-    <div><span class="eyebrow">MASTER DATA</span><h1>Material Price Catalog</h1><p>Current prices are effective-dated. Updating a price creates a new version and preserves the full timeline.</p></div>
-    <span class="badge success">@Model.Count materials</span>
+    <div><span class="eyebrow">@L["Master data"]</span><h1>@L["Material Price Catalog"]</h1><p>@L["Current prices are effective-dated. Updating a price creates a new version and preserves the full timeline."]</p></div>
+    <span class="badge success">@Model.Count @L["Materials"]</span>
 </div>
 
 <section class="panel">
     <div class="table-wrap">
         <table class="data-table">
-            <thead><tr><th>Material</th><th>Category</th><th>Unit</th><th class="num">Current price</th><th>Version</th><th>Effective from</th><th></th></tr></thead>
+            <thead><tr><th>@L["Material"]</th><th>@L["Category"]</th><th>@L["Unit"]</th><th class="num">@L["Current price"]</th><th>@L["Version"]</th><th>@L["Effective from"]</th><th></th></tr></thead>
             <tbody>
             @foreach (var item in Model)
             {
                 <tr>
-                    <td><strong>@item.NameEn</strong><small class="arabic">@item.NameAr</small><code>@item.Code</code></td>
-                    <td><span class="badge subtle">@item.Category</span></td>
-                    <td>@item.Unit</td>
+                    <td><strong>@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? item.NameAr : item.NameEn)</strong><small class="arabic">@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? item.NameEn : item.NameAr)</small><code>@item.Code</code></td>
+                    <td><span class="badge subtle">@L[item.Category.ToString()]</span></td>
+                    <td>@L[item.Unit.ToString()]</td>
                     <td class="num"><strong>@(item.CurrentPrice?.ToString("N2") ?? "—")</strong> <small>@item.Currency</small></td>
                     <td>@(item.CurrentVersion is null ? "—" : $"v{item.CurrentVersion}")</td>
-                    <td>@(item.EffectiveFromUtc?.ToString("dd MMM yyyy") ?? "—")</td>
-                    <td class="actions"><a class="text-link" asp-action="History" asp-route-id="@item.Id">History →</a></td>
+                    <td>@(item.EffectiveFromUtc?.ToString("dd MMM yyyy", System.Globalization.CultureInfo.CurrentUICulture) ?? "—")</td>
+                    <td class="actions"><a class="text-link" asp-action="History" asp-route-id="@item.Id">@L["History →"]</a></td>
                 </tr>
             }
             </tbody>

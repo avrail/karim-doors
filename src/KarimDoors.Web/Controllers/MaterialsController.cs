@@ -30,6 +30,7 @@ public sealed class MaterialsController(IMaterialHistoryService materialHistoryS
         {
             MaterialId = id,
             MaterialName = $"{material.Code} · {material.NameEn}",
+            MaterialNameAr = $"{material.Code} · {material.NameAr}",
             Currency = material.Prices.FirstOrDefault()?.Currency ?? "EGP",
             EffectiveFrom = DateTime.UtcNow.Date
         });
@@ -57,7 +58,7 @@ public sealed class MaterialsController(IMaterialHistoryService materialHistoryS
                     User.Identity?.Name ?? "local-user"),
                 cancellationToken);
 
-            TempData["Success"] = "A new price version was created. Historical versions were preserved.";
+            TempData["Success"] = "A new price version was created. Historical versions are preserved.";
             return RedirectToAction(nameof(History), new { id = model.MaterialId });
         }
         catch (InvalidOperationException ex)

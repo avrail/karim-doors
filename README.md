@@ -87,6 +87,8 @@ docs/
 
 ## Run locally
 
+The interface supports English and Arabic. Use the language link in the top bar to switch; the choice is saved in a cookie. Arabic uses a right-to-left layout. Pricing values and form numbers continue to use the existing decimal format.
+
 Requirements:
 
 - .NET 10 SDK

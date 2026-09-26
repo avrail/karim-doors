@@ -2,20 +2,20 @@
 @{
     ViewData["Title"] = "New Material Price";
 }
-<div class="page-intro"><div><a class="back-link" asp-action="History" asp-route-id="@Model.MaterialId">← Price history</a><span class="eyebrow">VERSIONED CHANGE</span><h1>New price version</h1><p>@Model.MaterialName</p></div></div>
+<div class="page-intro"><div><a class="back-link" asp-action="History" asp-route-id="@Model.MaterialId">@L["← Price history"]</a><span class="eyebrow">@L["VERSIONED CHANGE"]</span><h1>@L["New price version"]</h1><p>@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? Model.MaterialNameAr : Model.MaterialName)</p></div></div>
 <section class="panel form-panel narrow">
     <form asp-action="AddPrice" method="post" class="form-stack">
         <input asp-for="MaterialId" type="hidden" />
-        <input asp-for="MaterialName" type="hidden" />
+        <input asp-for="MaterialName" type="hidden" /><input asp-for="MaterialNameAr" type="hidden" />
         <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
         <div class="form-grid two">
-            <div class="field"><label asp-for="UnitPrice"></label><input asp-for="UnitPrice" autofocus /></div>
-            <div class="field"><label asp-for="Currency"></label><input asp-for="Currency" /></div>
+            <div class="field"><label asp-for="UnitPrice">@L["Unit price"]</label><input asp-for="UnitPrice" autofocus /></div>
+            <div class="field"><label asp-for="Currency">@L["Currency"]</label><input asp-for="Currency" /></div>
         </div>
-        <div class="field"><label asp-for="EffectiveFrom"></label><input asp-for="EffectiveFrom" /><small>The current price will automatically end at this date.</small></div>
-        <div class="field"><label asp-for="SupplierReference"></label><input asp-for="SupplierReference" placeholder="Supplier quote / PO / email reference" /></div>
-        <div class="field"><label asp-for="ChangeReason"></label><textarea asp-for="ChangeReason" rows="4" placeholder="Why is this price changing?"></textarea></div>
-        <div class="warning-note"><strong>History is immutable.</strong><span>This creates a new version; it does not overwrite the previous price.</span></div>
-        <button class="btn primary" type="submit">Create price version</button>
+        <div class="field"><label asp-for="EffectiveFrom">@L["Effective from"]</label><input asp-for="EffectiveFrom" /><small>@L["The current price will automatically end at this date."]</small></div>
+        <div class="field"><label asp-for="SupplierReference">@L["Supplier reference"]</label><input asp-for="SupplierReference" placeholder="@L["Supplier quote / PO / email reference"]" /></div>
+        <div class="field"><label asp-for="ChangeReason">@L["Reason for change"]</label><textarea asp-for="ChangeReason" rows="4" placeholder="@L["Why is this price changing?"]"></textarea></div>
+        <div class="warning-note"><strong>@L["History is immutable."]</strong><span>@L["This creates a new version; it does not overwrite the previous price."]</span></div>
+        <button class="btn primary" type="submit">@L["Create price version"]</button>
     </form>
 </section>

@@ -5,12 +5,12 @@
 
 <section class="hero-panel">
     <div>
-        <span class="hero-kicker">PRICING ENGINE · VERSIONED DATA</span>
-        <h1>Know what every door costs — and <em>why</em>.</h1>
-        <p>Calculate from dimensions and materials, preserve every historical price, and reproduce a quotation exactly as it was calculated.</p>
+        <span class="hero-kicker">@L["PRICING ENGINE · VERSIONED DATA"]</span>
+        <h1>@L["Know what every door costs — and"] <em>@L["why"]</em>.</h1>
+        <p>@L["Calculate from dimensions and materials, preserve every historical price, and reproduce a quotation exactly as it was calculated."]</p>
         <div class="hero-actions">
-            <a class="btn primary" asp-controller="Pricing" asp-action="Calculator">Calculate a door</a>
-            <a class="btn ghost" asp-controller="Materials" asp-action="Index">Review material prices</a>
+            <a class="btn primary" asp-controller="Pricing" asp-action="Calculator">@L["Calculate a door"]</a>
+            <a class="btn ghost" asp-controller="Materials" asp-action="Index">@L["Review material prices"]</a>
         </div>
     </div>
     <div class="door-visual" aria-hidden="true">
@@ -19,32 +19,32 @@
 </section>
 
 <section class="metric-grid">
-    <article class="metric-card"><span class="metric-label">Materials</span><strong>@Model.MaterialsCount</strong><small>versioned price catalog</small></article>
-    <article class="metric-card"><span class="metric-label">Door templates</span><strong>@Model.DoorTemplatesCount</strong><small>effective-dated rules</small></article>
-    <article class="metric-card"><span class="metric-label">Pricing profiles</span><strong>@Model.PricingProfilesCount</strong><small>cost & margin policies</small></article>
-    <article class="metric-card"><span class="metric-label">Quotations</span><strong>@Model.QuotationsCount</strong><small>immutable revisions</small></article>
+    <article class="metric-card"><span class="metric-label">@L["Materials"]</span><strong>@Model.MaterialsCount</strong><small>@L["versioned price catalog"]</small></article>
+    <article class="metric-card"><span class="metric-label">@L["Door templates"]</span><strong>@Model.DoorTemplatesCount</strong><small>@L["effective-dated rules"]</small></article>
+    <article class="metric-card"><span class="metric-label">@L["Pricing profiles"]</span><strong>@Model.PricingProfilesCount</strong><small>@L["cost & margin policies"]</small></article>
+    <article class="metric-card"><span class="metric-label">@L["Quotations"]</span><strong>@Model.QuotationsCount</strong><small>@L["immutable revisions"]</small></article>
 </section>
 
 <div class="two-column-grid">
     <section class="panel">
         <div class="panel-heading">
-            <div><span class="eyebrow">Foundation</span><h2>History-first architecture</h2></div>
-            <span class="badge success">Active</span>
+            <div><span class="eyebrow">@L["Foundation"]</span><h2>@L["History-first architecture"]</h2></div>
+            <span class="badge success">@L["Active"]</span>
         </div>
         <div class="principle-list">
-            <div class="principle"><span>01</span><div><strong>Effective-dated prices</strong><p>A price change creates a new version instead of overwriting the old price.</p></div></div>
-            <div class="principle"><span>02</span><div><strong>Versioned door rules</strong><p>Dimension rules and component definitions keep their historical versions.</p></div></div>
-            <div class="principle"><span>03</span><div><strong>Immutable quotation snapshots</strong><p>Approved calculations remain reproducible even after future configuration changes.</p></div></div>
+            <div class="principle"><span>01</span><div><strong>@L["Effective-dated prices"]</strong><p>@L["A price change creates a new version instead of overwriting the old price."]</p></div></div>
+            <div class="principle"><span>02</span><div><strong>@L["Versioned door rules"]</strong><p>@L["Dimension rules and component definitions keep their historical versions."]</p></div></div>
+            <div class="principle"><span>03</span><div><strong>@L["Immutable quotation snapshots"]</strong><p>@L["Approved calculations remain reproducible even after future configuration changes."]</p></div></div>
         </div>
     </section>
 
     <section class="panel accent-panel">
-        <span class="eyebrow">Excel validation case</span>
+        <span class="eyebrow">@L["Excel validation case"]</span>
         <h2>Hassan Allam · D04</h2>
-        <div class="door-spec-row"><span>Reference size</span><strong>970 × 2200 mm</strong></div>
-        <div class="door-spec-row"><span>Material cost</span><strong>3,496.84 EGP</strong></div>
-        <div class="door-spec-row"><span>Dry cost</span><strong>4,561.84 EGP</strong></div>
-        <div class="door-spec-row total"><span>Calculated price</span><strong>6,500.63 EGP</strong></div>
-        <p class="muted">Seeded from the source workbook as the first automated regression case.</p>
+        <div class="door-spec-row"><span>@L["Reference size"]</span><strong>970 × 2200 mm</strong></div>
+        <div class="door-spec-row"><span>@L["Material cost"]</span><strong>3,496.84 EGP</strong></div>
+        <div class="door-spec-row"><span>@L["Dry cost"]</span><strong>4,561.84 EGP</strong></div>
+        <div class="door-spec-row total"><span>@L["Calculated price"]</span><strong>6,500.63 EGP</strong></div>
+        <p class="muted">@L["Seeded from the source workbook as the first automated regression case."]</p>
     </section>
 </div>

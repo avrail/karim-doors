@@ -11,7 +11,7 @@ public sealed class PricingLookupService(KarimDoorsDbContext dbContext) : IPrici
             .AsNoTracking()
             .Where(x => x.IsActive)
             .OrderBy(x => x.NameEn)
-            .Select(x => new LookupOption(x.Code, $"{x.Code} · {x.NameEn}"))
+            .Select(x => new LookupOption(x.Code, $"{x.Code} · {x.NameEn}", $"{x.Code} · {x.NameAr}"))
             .ToListAsync(cancellationToken);
 
     public async Task<IReadOnlyList<LookupOption>> GetPricingProfilesAsync(CancellationToken cancellationToken = default) =>

@@ -6,23 +6,24 @@ namespace KarimDoors.Web.Models;
 
 public sealed class PricingCalculatorViewModel
 {
-    [Required]
+    [Required(ErrorMessage = "The {0} field is required.")]
     [Display(Name = "Door template")]
     public string DoorTemplateCode { get; set; } = "HA-D04";
 
-    [Required]
+    [Required(ErrorMessage = "The {0} field is required.")]
     [Display(Name = "Pricing profile")]
     public string PricingProfileCode { get; set; } = "HA-2022";
 
-    [Range(300, 5000)]
+    [Range(300, 5000, ErrorMessage = "The field {0} must be between {1} and {2}.")]
     [Display(Name = "Width (mm)")]
     public int WidthMm { get; set; } = 970;
 
-    [Range(300, 5000)]
+    [Range(300, 5000, ErrorMessage = "The field {0} must be between {1} and {2}.")]
     [Display(Name = "Height (mm)")]
     public int HeightMm { get; set; } = 2200;
 
-    [Range(typeof(decimal), "0.01", "100000")]
+    [Range(typeof(decimal), "0.01", "100000", ErrorMessage = "The field {0} must be between {1} and {2}.")]
+    [Display(Name = "Quantity")]
     public decimal Quantity { get; set; } = 1m;
 
     [DataType(DataType.Date)]

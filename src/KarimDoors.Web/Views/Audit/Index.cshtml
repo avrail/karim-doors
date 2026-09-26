@@ -2,8 +2,8 @@
 @{
     ViewData["Title"] = "Audit Log";
 }
-<div class="page-intro"><div><span class="eyebrow">CONTROL</span><h1>Audit Log</h1><p>High-value configuration changes are recorded with before/after values and a reason.</p></div><span class="badge">Latest @Model.Count</span></div>
-<section class="panel"><div class="table-wrap"><table class="data-table"><thead><tr><th>When</th><th>Entity</th><th>Action</th><th>Reason</th><th>User</th></tr></thead><tbody>
-@if(Model.Count == 0){<tr><td colspan="5"><div class="empty-inline">No audit events yet. Change a material price or setting to create the first event.</div></td></tr>}
+<div class="page-intro"><div><span class="eyebrow">@L["CONTROL"]</span><h1>@L["Audit Log"]</h1><p>@L["High-value configuration changes are recorded with before/after values and a reason."]</p></div><span class="badge">@L["Latest"] @Model.Count</span></div>
+<section class="panel"><div class="table-wrap"><table class="data-table"><thead><tr><th>@L["When"]</th><th>@L["Entity"]</th><th>@L["Action"]</th><th>@L["Reason"]</th><th>@L["User"]</th></tr></thead><tbody>
+@if(Model.Count == 0){<tr><td colspan="5"><div class="empty-inline">@L["No audit events yet. Change a material price or setting to create the first event."]</div></td></tr>}
 @foreach(var item in Model){<tr><td>@item.OccurredOnUtc.ToString("dd MMM yyyy HH:mm")</td><td><strong>@item.EntityName</strong><code>@item.EntityKey</code></td><td><span class="badge subtle">@item.Action</span></td><td>@(item.Reason ?? "—")</td><td>@(item.UserId ?? "system")</td></tr>}
 </tbody></table></div></section>

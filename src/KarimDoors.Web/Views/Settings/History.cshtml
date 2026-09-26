@@ -2,9 +2,9 @@
 @{
     ViewData["Title"] = "Setting History";
 }
-<div class="page-intro"><div><a class="back-link" asp-action="Index">← Settings</a><span class="eyebrow">@Model.Key</span><h1>@Model.Name</h1><p>@Model.Description</p></div><a class="btn primary" asp-action="AddVersion" asp-route-id="@Model.Id">New version</a></div>
+<div class="page-intro"><div><a class="back-link" asp-action="Index">@L["← Settings"]</a><span class="eyebrow">@Model.Key</span><h1>@L[Model.Name]</h1><p>@L[Model.Description ?? ""]</p></div><a class="btn primary" asp-action="AddVersion" asp-route-id="@Model.Id">@L["New version"]</a></div>
 <section class="panel">
     <div class="timeline">
-    @foreach(var version in Model.Versions){<article class="timeline-item"><div class="timeline-dot"></div><div class="timeline-card"><div class="timeline-head"><div><strong>@version.Value</strong><small>Version @version.Version</small></div>@if(version.EffectiveToUtc is null){<span class="badge success">Current</span>}</div><div class="date-range">@version.EffectiveFromUtc.ToString("dd MMM yyyy") → @(version.EffectiveToUtc?.ToString("dd MMM yyyy") ?? "Current")</div><p>@(version.ChangeReason ?? "No reason recorded")</p></div></article>}
+    @foreach(var version in Model.Versions){<article class="timeline-item"><div class="timeline-dot"></div><div class="timeline-card"><div class="timeline-head"><div><strong>@version.Value</strong><small>@L["Version"] @version.Version</small></div>@if(version.EffectiveToUtc is null){<span class="badge success">@L["Current"]</span>}</div><div class="date-range">@version.EffectiveFromUtc.ToString("dd MMM yyyy", System.Globalization.CultureInfo.CurrentUICulture) → @(version.EffectiveToUtc?.ToString("dd MMM yyyy", System.Globalization.CultureInfo.CurrentUICulture) ?? L["Current"].Value)</div><p>@L[version.ChangeReason ?? "No reason recorded"]</p></div></article>}
     </div>
 </section>

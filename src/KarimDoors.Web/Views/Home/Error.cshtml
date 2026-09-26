@@ -3,7 +3,7 @@
 }
 <section class="empty-state panel">
     <div class="empty-icon">!</div>
-    <h1>We couldn't complete that request.</h1>
-    <p>Please return to the dashboard and try again. Detailed errors are available in Development mode.</p>
-    <a class="btn primary" asp-controller="Home" asp-action="Index">Back to dashboard</a>
+    <h1>@L["We couldn't complete that request."]</h1>
+    <p>@L["Please return to the dashboard and try again. Detailed errors are available in Development mode."]</p>
+    <a class="btn primary" asp-controller="Home" asp-action="Index">@L["Back to dashboard"]</a>
 </section>

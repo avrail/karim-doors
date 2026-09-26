@@ -6,19 +6,20 @@ public sealed class AddMaterialPriceViewModel
 {
     public int MaterialId { get; set; }
     public string MaterialName { get; set; } = string.Empty;
+    public string MaterialNameAr { get; set; } = string.Empty;
 
-    [Range(typeof(decimal), "0.0001", "999999999")]
+    [Range(typeof(decimal), "0.0001", "999999999", ErrorMessage = "The field {0} must be between {1} and {2}.")]
     [Display(Name = "Unit price")]
     public decimal UnitPrice { get; set; }
 
-    [Required, StringLength(3, MinimumLength = 3)]
+    [Required(ErrorMessage = "The {0} field is required."), StringLength(3, MinimumLength = 3)]
     public string Currency { get; set; } = "EGP";
 
     [DataType(DataType.Date)]
     [Display(Name = "Effective from")]
     public DateTime EffectiveFrom { get; set; } = DateTime.UtcNow.Date;
 
-    [Required, StringLength(500)]
+    [Required(ErrorMessage = "The {0} field is required."), StringLength(500)]
     [Display(Name = "Reason for change")]
     public string ChangeReason { get; set; } = string.Empty;
 

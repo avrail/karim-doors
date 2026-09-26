@@ -3,14 +3,26 @@ using KarimDoors.Infrastructure;
 using KarimDoors.Infrastructure.Persistence;
 using KarimDoors.Infrastructure.Seeding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddDataAnnotationsLocalization(options =>
+    options.DataAnnotationLocalizerProvider = (_, factory) => factory.Create(typeof(KarimDoors.Web.SharedResource)));
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+
+var supportedUiCultures = new[] { new CultureInfo("en-US"), new CultureInfo("ar-EG") };
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("en-US"),
+    SupportedCultures = [new CultureInfo("en-US")],
+    SupportedUICultures = supportedUiCultures
+});
 
 if (!app.Environment.IsDevelopment())
 {

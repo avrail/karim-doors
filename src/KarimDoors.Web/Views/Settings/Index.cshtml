@@ -2,9 +2,9 @@
 @{
     ViewData["Title"] = "System Settings";
 }
-<div class="page-intro"><div><span class="eyebrow">CONFIGURATION</span><h1>Versioned System Settings</h1><p>Settings that can influence pricing are stored as effective-dated versions, not mutable single values.</p></div></div>
+<div class="page-intro"><div><span class="eyebrow">@L["CONFIGURATION"]</span><h1>@L["Versioned System Settings"]</h1><p>@L["Settings that can influence pricing are stored as effective-dated versions, not mutable single values."]</p></div></div>
 <section class="panel">
-    <div class="table-wrap"><table class="data-table"><thead><tr><th>Setting</th><th>Type</th><th>Pricing sensitive</th><th>Current value</th><th>Version</th><th></th></tr></thead><tbody>
-    @foreach(var item in Model){<tr><td><strong>@item.Name</strong><code>@item.Key</code><small>@item.Description</small></td><td>@item.ValueType</td><td>@if(item.IsPricingSensitive){<span class="badge warning">Yes</span>}else{<span class="badge subtle">No</span>}</td><td><strong>@(item.CurrentValue ?? "—")</strong></td><td>@(item.CurrentVersion is null ? "—" : $"v{item.CurrentVersion}")</td><td class="actions"><a class="text-link" asp-action="History" asp-route-id="@item.Id">History →</a></td></tr>}
+    <div class="table-wrap"><table class="data-table"><thead><tr><th>@L["Setting"]</th><th>@L["Type"]</th><th>@L["Pricing sensitive"]</th><th>@L["Current value"]</th><th>@L["Version"]</th><th></th></tr></thead><tbody>
+    @foreach(var item in Model){<tr><td><strong>@L[item.Name]</strong><code>@item.Key</code><small>@L[item.Description ?? ""]</small></td><td>@L[item.ValueType.ToString()]</td><td>@if(item.IsPricingSensitive){<span class="badge warning">@L["Yes"]</span>}else{<span class="badge subtle">@L["No"]</span>}</td><td><strong>@(item.CurrentValue ?? "—")</strong></td><td>@(item.CurrentVersion is null ? "—" : $"v{item.CurrentVersion}")</td><td class="actions"><a class="text-link" asp-action="History" asp-route-id="@item.Id">@L["History →"]</a></td></tr>}
     </tbody></table></div>
 </section>

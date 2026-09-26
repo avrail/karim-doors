@@ -4,8 +4,8 @@
 }
 
 <div class="page-intro">
-    <div><span class="eyebrow">LIVE COSTING</span><h1>Door Price Calculator</h1><p>Dimensions, material prices and commercial rules are resolved using the selected pricing date.</p></div>
-    <span class="badge">Historical-aware</span>
+    <div><span class="eyebrow">@L["LIVE COSTING"]</span><h1>@L["Door Price Calculator"]</h1><p>@L["Dimensions, material prices and commercial rules are resolved using the selected pricing date."]</p></div>
+    <span class="badge">@L["Historical-aware"]</span>
 </div>
 
 @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
@@ -15,77 +15,77 @@
 
 <div class="calculator-layout">
     <section class="panel calculator-form-panel">
-        <div class="panel-heading"><div><span class="eyebrow">Input</span><h2>Door configuration</h2></div><span class="step-chip">01</span></div>
+        <div class="panel-heading"><div><span class="eyebrow">@L["Input"]</span><h2>@L["Door configuration"]</h2></div><span class="step-chip">01</span></div>
         <form asp-action="Calculator" method="post" class="form-stack">
             <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
 
             <div class="field">
-                <label asp-for="DoorTemplateCode"></label>
+                <label asp-for="DoorTemplateCode">@L["Door template"]</label>
                 <select asp-for="DoorTemplateCode">
                     @foreach (var item in Model.DoorTemplates)
                     {
-                        <option value="@item.Value">@item.Text</option>
+                        <option value="@item.Value">@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? item.ArabicText ?? item.Text : item.Text)</option>
                     }
                 </select>
                 <span asp-validation-for="DoorTemplateCode"></span>
             </div>
 
             <div class="field">
-                <label asp-for="PricingProfileCode"></label>
+                <label asp-for="PricingProfileCode">@L["Pricing profile"]</label>
                 <select asp-for="PricingProfileCode">
                     @foreach (var item in Model.PricingProfiles)
                     {
-                        <option value="@item.Value">@item.Text</option>
+                        <option value="@item.Value">@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? L[item.Text].Value : item.Text)</option>
                     }
                 </select>
                 <span asp-validation-for="PricingProfileCode"></span>
             </div>
 
             <div class="form-grid two">
-                <div class="field"><label asp-for="WidthMm"></label><input asp-for="WidthMm" /><span asp-validation-for="WidthMm"></span></div>
-                <div class="field"><label asp-for="HeightMm"></label><input asp-for="HeightMm" /><span asp-validation-for="HeightMm"></span></div>
+                <div class="field"><label asp-for="WidthMm">@L["Width (mm)"]</label><input asp-for="WidthMm" /><span asp-validation-for="WidthMm"></span></div>
+                <div class="field"><label asp-for="HeightMm">@L["Height (mm)"]</label><input asp-for="HeightMm" /><span asp-validation-for="HeightMm"></span></div>
             </div>
 
             <div class="form-grid two">
-                <div class="field"><label asp-for="Quantity"></label><input asp-for="Quantity" /><span asp-validation-for="Quantity"></span></div>
-                <div class="field"><label asp-for="CalculationDate"></label><input asp-for="CalculationDate" /><span asp-validation-for="CalculationDate"></span></div>
+                <div class="field"><label asp-for="Quantity">@L["Quantity"]</label><input asp-for="Quantity" /><span asp-validation-for="Quantity"></span></div>
+                <div class="field"><label asp-for="CalculationDate">@L["Pricing date"]</label><input asp-for="CalculationDate" /><span asp-validation-for="CalculationDate"></span></div>
             </div>
 
-            <button class="btn primary wide" type="submit">Calculate price <span>→</span></button>
+            <button class="btn primary wide" type="submit">@L["Calculate price"] <span>→</span></button>
         </form>
     </section>
 
     <aside class="price-summary-card @(Model.Result is null ? "is-empty" : string.Empty)">
         @if (Model.Result is null)
         {
-            <span class="eyebrow">Result</span>
-            <h2>Ready to calculate</h2>
+            <span class="eyebrow">@L["Result"]</span>
+            <h2>@L["Ready to calculate"]</h2>
             <div class="summary-placeholder">
                 <div class="mini-door"></div>
-                <p>Select a template and dimensions. The engine will use the price versions effective on your pricing date.</p>
+                <p>@L["Select a template and dimensions. The engine will use the price versions effective on your pricing date."]</p>
             </div>
         }
         else
         {
             var r = Model.Result;
-            <div class="summary-head"><div><span class="eyebrow">Calculated unit price</span><h2>@r.DoorTemplateCode</h2></div><span class="badge success">v@r.DoorTemplateVersion</span></div>
+            <div class="summary-head"><div><span class="eyebrow">@L["Calculated unit price"]</span><h2>@r.DoorTemplateCode</h2></div><span class="badge success">v@r.DoorTemplateVersion</span></div>
             <div class="price-number"><strong>@r.UnitCalculatedPrice.ToString("N2")</strong><span>@r.Currency</span></div>
-            <div class="dimension-line">@r.WidthMm × @r.HeightMm mm · @(r.FireRatingMinutes == 0 ? "Non-fire" : $"FD{r.FireRatingMinutes}")</div>
+            <div class="dimension-line">@r.WidthMm × @r.HeightMm mm · @(r.FireRatingMinutes == 0 ? L["Non-fire"].Value : $"FD{r.FireRatingMinutes}")</div>
 
             <div class="summary-lines">
-                <div><span>Materials</span><strong>@r.MaterialCost.ToString("N2")</strong></div>
-                <div><span>Manufacturing</span><strong>@r.ManufacturingCost.ToString("N2")</strong></div>
-                <div><span>Transport</span><strong>@r.TransportCost.ToString("N2")</strong></div>
-                <div><span>Installation</span><strong>@r.InstallationCost.ToString("N2")</strong></div>
-                <div class="subtotal"><span>Dry cost</span><strong>@r.DryCost.ToString("N2")</strong></div>
-                <div><span>Administrative (@r.AdministrativePercentage.ToString("0.##")%)</span><strong>@r.AdministrativeCost.ToString("N2")</strong></div>
-                <div><span>Profit (@r.ProfitPercentage.ToString("0.##")%)</span><strong>@r.ProfitCost.ToString("N2")</strong></div>
+                <div><span>@L["Materials"]</span><strong>@r.MaterialCost.ToString("N2")</strong></div>
+                <div><span>@L["Manufacturing"]</span><strong>@r.ManufacturingCost.ToString("N2")</strong></div>
+                <div><span>@L["Transport"]</span><strong>@r.TransportCost.ToString("N2")</strong></div>
+                <div><span>@L["Installation"]</span><strong>@r.InstallationCost.ToString("N2")</strong></div>
+                <div class="subtotal"><span>@L["Dry cost"]</span><strong>@r.DryCost.ToString("N2")</strong></div>
+                <div><span>@L["Administrative"] (@r.AdministrativePercentage.ToString("0.##")%)</span><strong>@r.AdministrativeCost.ToString("N2")</strong></div>
+                <div><span>@L["Profit"] (@r.ProfitPercentage.ToString("0.##")%)</span><strong>@r.ProfitCost.ToString("N2")</strong></div>
             </div>
             @if (r.Quantity != 1)
             {
-                <div class="grand-total"><span>Total × @r.Quantity.ToString("N2")</span><strong>@r.TotalCalculatedPrice.ToString("N2") @r.Currency</strong></div>
+                <div class="grand-total"><span>@L["Total"] × @r.Quantity.ToString("N2")</span><strong>@r.TotalCalculatedPrice.ToString("N2") @r.Currency</strong></div>
             }
-            <small class="summary-foot">Profile @r.PricingProfileCode v@r.PricingProfileVersion · @r.CalculationDateUtc.ToString("dd MMM yyyy")</small>
+            <small class="summary-foot">@L["Profile"] @r.PricingProfileCode v@r.PricingProfileVersion · @r.CalculationDateUtc.ToString("dd MMM yyyy", System.Globalization.CultureInfo.CurrentUICulture)</small>
         }
     </aside>
 </div>
@@ -93,15 +93,15 @@
 @if (Model.Result is not null)
 {
     <section class="panel breakdown-panel">
-        <div class="panel-heading"><div><span class="eyebrow">Traceability</span><h2>Cost breakdown</h2><p>Every row records the material price version used by the calculation.</p></div><span class="badge">@Model.Result.Components.Count items</span></div>
+        <div class="panel-heading"><div><span class="eyebrow">@L["Traceability"]</span><h2>@L["Cost breakdown"]</h2><p>@L["Every row records the material price version used by the calculation."]</p></div><span class="badge">@Model.Result.Components.Count @L["items"]</span></div>
         <div class="table-wrap">
             <table class="data-table">
-                <thead><tr><th>Component</th><th>Material</th><th class="num">Measurement</th><th class="num">Unit price</th><th class="num">Waste</th><th class="num">Cost</th><th>Price version</th></tr></thead>
+                <thead><tr><th>@L["Component"]</th><th>@L["Material"]</th><th class="num">@L["Measurement"]</th><th class="num">@L["Unit price"]</th><th class="num">@L["Waste"]</th><th class="num">@L["Cost"]</th><th>@L["Price version"]</th></tr></thead>
                 <tbody>
                 @foreach (var item in Model.Result.Components)
                 {
                     <tr>
-                        <td><strong>@item.NameEn</strong><small class="arabic">@item.NameAr</small></td>
+                        <td><strong>@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? item.NameAr : item.NameEn)</strong><small class="arabic">@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? item.NameEn : item.NameAr)</small></td>
                         <td><code>@item.MaterialCode</code></td>
                         <td class="num">@item.Measurement.ToString("N4") <small>@item.Unit</small></td>
                         <td class="num">@item.UnitPrice.ToString("N2")</td>

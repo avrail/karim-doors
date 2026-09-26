@@ -210,6 +210,18 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .timeline-head strong { font-size: 15px; }
 .timeline-head small, .date-range { color: var(--muted); font-size: 9px; }
 .date-range { margin: 10px 0 7px; }
+
+.language-switch { color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px; text-decoration: none; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.language-switch:hover { border-color: var(--primary); color: var(--primary); }
+html[dir="rtl"] body { font-family: "Noto Kufi Arabic", "Segoe UI", sans-serif; }
+html[dir="rtl"] .topbar-actions { margin-left: 0; margin-right: auto; }
+html[dir="rtl"] .nav-link.active { box-shadow: inset -2px 0 0 var(--accent); }
+html[dir="rtl"] .timeline { margin-left: 0; margin-right: 8px; }
+html[dir="rtl"] .timeline:before { left: auto; right: 5px; }
+html[dir="rtl"] .timeline-item { padding-left: 0; padding-right: 30px; }
+html[dir="rtl"] .timeline-dot { left: auto; right: 0; }
+html[dir="rtl"] .data-table .num, html[dir="rtl"] .price-number { direction: ltr; }
+html[dir="rtl"] input[type="number"], html[dir="rtl"] input[type="date"] { direction: ltr; text-align: right; }
 .timeline-card p { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
 
 .alert { padding: 12px 14px; border-radius: 11px; margin-bottom: 18px; font-size: 11px; font-weight: 600; }
@@ -250,4 +262,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
     .metric-grid { grid-template-columns: 1fr; }
     .hero-actions { flex-direction: column; align-items: stretch; }
     .hero-panel h1 { font-size: 34px; }
+}
+
+@media (max-width: 760px) {
+  html[dir="rtl"] .sidebar { left: auto; right: -280px; transition: right .2s ease; box-shadow: -20px 0 50px rgba(0,0,0,.25); }
+  html[dir="rtl"] .sidebar.open { left: auto; right: 0; }
 }
