@@ -7,7 +7,7 @@
 - Effective-date resolution for prices, door-template versions and pricing-profile versions.
 - Deterministic pricing engine.
 - Hassan Allam D04 spreadsheet regression case.
-- SQLite development persistence and optional SQL Server provider.
+- SQL Server persistence with an initial EF Core migration.
 - Seed data for the first spreadsheet validation case.
 - Dashboard.
 - Door price calculator.
@@ -25,7 +25,6 @@
 - Door-template editor/version comparison UI.
 - Pricing-profile editor/version comparison UI.
 - Customer/project CRUD.
-- EF migration set for production.
 - Excel import workflow.
 - Reporting / impact analysis.
 

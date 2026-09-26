@@ -10,7 +10,7 @@ The project was designed around one non-negotiable rule:
 
 - ASP.NET Core 10 MVC application.
 - EF Core 10 persistence layer.
-- SQLite development database with optional SQL Server configuration.
+- SQL Server database with EF Core migrations.
 - Effective-dated material price history.
 - Versioned door templates and component rules.
 - Versioned pricing profiles.
@@ -100,35 +100,13 @@ dotnet test
 dotnet run --project .\src\KarimDoors.Web\KarimDoors.Web.csproj
 ```
 
-The development configuration uses SQLite by default:
+Development uses the `KarimDoors` database on `ADB10CIC0W98361\MSSQLSERVER01` with Windows authentication and `TrustServerCertificate=True`. It applies migrations and seeds sample door data when started. The Windows account running the app needs access to that database.
 
-```json
-"Database": {
-  "Provider": "Sqlite"
-}
-```
+## Production SQL Server
 
-The database file is created locally as `karimdoors.db` and is ignored by Git.
-
-## Use SQL Server
-
-Change the provider in `appsettings.Development.json` or a local configuration file:
-
-```json
-{
-  "Database": {
-    "Provider": "SqlServer"
-  },
-  "ConnectionStrings": {
-    "SqlServer": "Server=(localdb)\\MSSQLLocalDB;Database=KarimDoors;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true"
-  }
-}
-```
-
-For production, set `Database__Provider=SqlServer` and provide `ConnectionStrings__SqlServer` through the deployment environment or a secret store. The application does not create or migrate a production database at startup. Apply the EF Core migration before starting it. For example, with Windows authentication on the application host:
+Provide `ConnectionStrings__SqlServer` through the deployment environment or a secret store. The application does not create or migrate a production database at startup. Apply the EF Core migration before starting it. For example, with Windows authentication on the application host:
 
 ```powershell
-$env:Database__Provider = "SqlServer"
 $env:ConnectionStrings__SqlServer = "Server=ADB10CIC0W98361\MSSQLSERVER01;Database=KarimDoors;Integrated Security=True;TrustServerCertificate=True"
 dotnet tool restore
 dotnet tool run dotnet-ef database update --project src/KarimDoors.Infrastructure --startup-project src/KarimDoors.Web

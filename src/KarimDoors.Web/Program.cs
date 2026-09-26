@@ -2,6 +2,7 @@ using KarimDoors.Application;
 using KarimDoors.Infrastructure;
 using KarimDoors.Infrastructure.Persistence;
 using KarimDoors.Infrastructure.Seeding;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +39,6 @@ static async Task InitialiseDatabaseAsync(WebApplication app)
 
     await using var scope = app.Services.CreateAsyncScope();
     var dbContext = scope.ServiceProvider.GetRequiredService<KarimDoorsDbContext>();
-    await dbContext.Database.EnsureCreatedAsync();
+    await dbContext.Database.MigrateAsync();
     await scope.ServiceProvider.GetRequiredService<DatabaseSeeder>().SeedAsync();
 }

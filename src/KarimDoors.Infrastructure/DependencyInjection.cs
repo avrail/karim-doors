@@ -14,24 +14,15 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var provider = configuration["Database:Provider"] ?? "Sqlite";
-
         services.AddDbContext<KarimDoorsDbContext>(options =>
         {
-            if (string.Equals(provider, "SqlServer", StringComparison.OrdinalIgnoreCase))
+            var connectionString = configuration.GetConnectionString("SqlServer");
+            if (string.IsNullOrWhiteSpace(connectionString))
             {
-                var connectionString = configuration.GetConnectionString("SqlServer");
-                if (string.IsNullOrWhiteSpace(connectionString))
-                {
-                    throw new InvalidOperationException("ConnectionStrings:SqlServer is required for the SQL Server provider.");
-                }
+                throw new InvalidOperationException("ConnectionStrings:SqlServer is required.");
+            }
 
-                options.UseSqlServer(connectionString);
-            }
-            else
-            {
-                options.UseSqlite(configuration.GetConnectionString("Sqlite"));
-            }
+            options.UseSqlServer(connectionString);
         });
 
         services.AddScoped<IDoorPricingDataProvider, EfDoorPricingDataProvider>();
