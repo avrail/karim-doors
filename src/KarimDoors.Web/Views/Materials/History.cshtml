@@ -1,0 +1,38 @@
+@model MaterialHistory
+@{
+    ViewData["Title"] = "Material History";
+}
+<div class="page-intro">
+    <div><a class="back-link" asp-action="Index">← Materials</a><span class="eyebrow">@Model.Code</span><h1>@Model.NameEn</h1><p class="arabic lead-ar">@Model.NameAr</p></div>
+    <a class="btn primary" asp-action="AddPrice" asp-route-id="@Model.Id">New price version</a>
+</div>
+
+<div class="two-column-grid history-grid">
+    <section class="panel">
+        <div class="panel-heading"><div><span class="eyebrow">Timeline</span><h2>Price versions</h2></div><span class="badge">@Model.Prices.Count versions</span></div>
+        <div class="timeline">
+        @foreach (var price in Model.Prices)
+        {
+            <article class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-head"><div><strong>@price.UnitPrice.ToString("N2") @price.Currency</strong><small>Version @price.Version</small></div>@if(price.EffectiveToUtc is null){<span class="badge success">Current</span>}</div>
+                    <div class="date-range">@price.EffectiveFromUtc.ToString("dd MMM yyyy") → @(price.EffectiveToUtc?.ToString("dd MMM yyyy") ?? "Current")</div>
+                    <p>@(price.ChangeReason ?? "No reason recorded")</p>
+                    @if (!string.IsNullOrWhiteSpace(price.SupplierReference)) { <small>Reference: @price.SupplierReference</small> }
+                </div>
+            </article>
+        }
+        </div>
+    </section>
+    <aside class="panel sticky-panel">
+        <span class="eyebrow">Material profile</span>
+        <h2>@Model.Code</h2>
+        <div class="summary-lines compact">
+            <div><span>Category</span><strong>@Model.Category</strong></div>
+            <div><span>Pricing unit</span><strong>@Model.Unit</strong></div>
+            <div><span>Versions</span><strong>@Model.Prices.Count</strong></div>
+        </div>
+        <div class="info-note"><strong>Why versions?</strong><p>Old quotations keep resolving to the price that was effective on their calculation date.</p></div>
+    </aside>
+</div>

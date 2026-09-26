@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] · Karim Doors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <a class="brand" asp-controller="Home" asp-action="Index">
+                <span class="brand-mark">KD</span>
+                <span class="brand-copy">
+                    <strong>Karim Doors</strong>
+                    <small>Pricing Intelligence</small>
+                </span>
+            </a>
+
+            <nav class="nav-stack">
+                <span class="nav-caption">Workspace</span>
+                <a class="nav-link @Active("Home")" asp-controller="Home" asp-action="Index"><span>⌂</span> Dashboard</a>
+                <a class="nav-link @Active("Pricing")" asp-controller="Pricing" asp-action="Calculator"><span>◇</span> Price Calculator</a>
+                <span class="nav-caption">Master data</span>
+                <a class="nav-link @Active("Materials")" asp-controller="Materials" asp-action="Index"><span>▦</span> Materials & Prices</a>
+                <a class="nav-link @Active("Settings")" asp-controller="Settings" asp-action="Index"><span>⚙</span> System Settings</a>
+                <span class="nav-caption">Control</span>
+                <a class="nav-link @Active("Audit")" asp-controller="Audit" asp-action="Index"><span>↺</span> Audit Log</a>
+            </nav>
+
+            <div class="sidebar-note">
+                <span class="status-dot"></span>
+                <div><strong>History protected</strong><small>Changes create new versions.</small></div>
+            </div>
+        </aside>
+
+        <div class="main-column">
+            <header class="topbar">
+                <button class="icon-button mobile-only" id="menuToggle" type="button" aria-label="Toggle navigation">☰</button>
+                <div>
+                    <div class="eyebrow">Door Cost Management</div>
+                    <div class="topbar-title">@ViewData["Title"]</div>
+                </div>
+                <div class="topbar-actions">
+                    <span class="environment-pill">Development</span>
+                    <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme">◐</button>
+                </div>
+            </header>
+
+            <main class="content-wrap">
+                @if (TempData["Success"] is string success)
+                {
+                    <div class="alert success">@success</div>
+                }
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+@functions {
+    string Active(string controller) =>
+        string.Equals(ViewContext.RouteData.Values["controller"]?.ToString(), controller, StringComparison.OrdinalIgnoreCase)
+            ? "active"
+            : string.Empty;
+}

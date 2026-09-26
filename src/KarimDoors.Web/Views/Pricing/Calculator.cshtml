@@ -1,0 +1,117 @@
+@model PricingCalculatorViewModel
+@{
+    ViewData["Title"] = "Price Calculator";
+}
+
+<div class="page-intro">
+    <div><span class="eyebrow">LIVE COSTING</span><h1>Door Price Calculator</h1><p>Dimensions, material prices and commercial rules are resolved using the selected pricing date.</p></div>
+    <span class="badge">Historical-aware</span>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div class="alert danger">@Model.ErrorMessage</div>
+}
+
+<div class="calculator-layout">
+    <section class="panel calculator-form-panel">
+        <div class="panel-heading"><div><span class="eyebrow">Input</span><h2>Door configuration</h2></div><span class="step-chip">01</span></div>
+        <form asp-action="Calculator" method="post" class="form-stack">
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <div class="field">
+                <label asp-for="DoorTemplateCode"></label>
+                <select asp-for="DoorTemplateCode">
+                    @foreach (var item in Model.DoorTemplates)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="DoorTemplateCode"></span>
+            </div>
+
+            <div class="field">
+                <label asp-for="PricingProfileCode"></label>
+                <select asp-for="PricingProfileCode">
+                    @foreach (var item in Model.PricingProfiles)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="PricingProfileCode"></span>
+            </div>
+
+            <div class="form-grid two">
+                <div class="field"><label asp-for="WidthMm"></label><input asp-for="WidthMm" /><span asp-validation-for="WidthMm"></span></div>
+                <div class="field"><label asp-for="HeightMm"></label><input asp-for="HeightMm" /><span asp-validation-for="HeightMm"></span></div>
+            </div>
+
+            <div class="form-grid two">
+                <div class="field"><label asp-for="Quantity"></label><input asp-for="Quantity" /><span asp-validation-for="Quantity"></span></div>
+                <div class="field"><label asp-for="CalculationDate"></label><input asp-for="CalculationDate" /><span asp-validation-for="CalculationDate"></span></div>
+            </div>
+
+            <button class="btn primary wide" type="submit">Calculate price <span>→</span></button>
+        </form>
+    </section>
+
+    <aside class="price-summary-card @(Model.Result is null ? "is-empty" : string.Empty)">
+        @if (Model.Result is null)
+        {
+            <span class="eyebrow">Result</span>
+            <h2>Ready to calculate</h2>
+            <div class="summary-placeholder">
+                <div class="mini-door"></div>
+                <p>Select a template and dimensions. The engine will use the price versions effective on your pricing date.</p>
+            </div>
+        }
+        else
+        {
+            var r = Model.Result;
+            <div class="summary-head"><div><span class="eyebrow">Calculated unit price</span><h2>@r.DoorTemplateCode</h2></div><span class="badge success">v@r.DoorTemplateVersion</span></div>
+            <div class="price-number"><strong>@r.UnitCalculatedPrice.ToString("N2")</strong><span>@r.Currency</span></div>
+            <div class="dimension-line">@r.WidthMm × @r.HeightMm mm · @(r.FireRatingMinutes == 0 ? "Non-fire" : $"FD{r.FireRatingMinutes}")</div>
+
+            <div class="summary-lines">
+                <div><span>Materials</span><strong>@r.MaterialCost.ToString("N2")</strong></div>
+                <div><span>Manufacturing</span><strong>@r.ManufacturingCost.ToString("N2")</strong></div>
+                <div><span>Transport</span><strong>@r.TransportCost.ToString("N2")</strong></div>
+                <div><span>Installation</span><strong>@r.InstallationCost.ToString("N2")</strong></div>
+                <div class="subtotal"><span>Dry cost</span><strong>@r.DryCost.ToString("N2")</strong></div>
+                <div><span>Administrative (@r.AdministrativePercentage.ToString("0.##")%)</span><strong>@r.AdministrativeCost.ToString("N2")</strong></div>
+                <div><span>Profit (@r.ProfitPercentage.ToString("0.##")%)</span><strong>@r.ProfitCost.ToString("N2")</strong></div>
+            </div>
+            @if (r.Quantity != 1)
+            {
+                <div class="grand-total"><span>Total × @r.Quantity.ToString("N2")</span><strong>@r.TotalCalculatedPrice.ToString("N2") @r.Currency</strong></div>
+            }
+            <small class="summary-foot">Profile @r.PricingProfileCode v@r.PricingProfileVersion · @r.CalculationDateUtc.ToString("dd MMM yyyy")</small>
+        }
+    </aside>
+</div>
+
+@if (Model.Result is not null)
+{
+    <section class="panel breakdown-panel">
+        <div class="panel-heading"><div><span class="eyebrow">Traceability</span><h2>Cost breakdown</h2><p>Every row records the material price version used by the calculation.</p></div><span class="badge">@Model.Result.Components.Count items</span></div>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead><tr><th>Component</th><th>Material</th><th class="num">Measurement</th><th class="num">Unit price</th><th class="num">Waste</th><th class="num">Cost</th><th>Price version</th></tr></thead>
+                <tbody>
+                @foreach (var item in Model.Result.Components)
+                {
+                    <tr>
+                        <td><strong>@item.NameEn</strong><small class="arabic">@item.NameAr</small></td>
+                        <td><code>@item.MaterialCode</code></td>
+                        <td class="num">@item.Measurement.ToString("N4") <small>@item.Unit</small></td>
+                        <td class="num">@item.UnitPrice.ToString("N2")</td>
+                        <td class="num">@item.WastePercentage.ToString("0.##")%</td>
+                        <td class="num"><strong>@item.TotalCost.ToString("N2")</strong></td>
+                        <td><span class="version-pill">v@item.MaterialPriceVersion</span></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </section>
+}

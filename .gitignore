@@ -33,3 +33,8 @@ docs/source-data/*.xls
 ## Generated logs
 logs/
 *.log
+
+## Local development databases
+*.db
+*.db-shm
+*.db-wal

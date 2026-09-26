@@ -1,0 +1,26 @@
+namespace KarimDoors.Application.Pricing;
+
+public sealed record PricingResult(
+    string DoorTemplateCode,
+    string DoorTemplateName,
+    int DoorTemplateVersion,
+    int WidthMm,
+    int HeightMm,
+    int FireRatingMinutes,
+    string PricingProfileCode,
+    int PricingProfileVersion,
+    string Currency,
+    DateTime CalculationDateUtc,
+    decimal Quantity,
+    decimal MaterialCost,
+    decimal ManufacturingCost,
+    decimal TransportCost,
+    decimal InstallationCost,
+    decimal DryCost,
+    decimal AdministrativePercentage,
+    decimal AdministrativeCost,
+    decimal ProfitPercentage,
+    decimal ProfitCost,
+    decimal UnitCalculatedPrice,
+    decimal TotalCalculatedPrice,
+    IReadOnlyList<PricingComponentResult> Components);
