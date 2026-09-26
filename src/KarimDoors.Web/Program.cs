@@ -31,6 +31,11 @@ await app.RunAsync();
 
 static async Task InitialiseDatabaseAsync(WebApplication app)
 {
+    if (!app.Environment.IsDevelopment())
+    {
+        return;
+    }
+
     await using var scope = app.Services.CreateAsyncScope();
     var dbContext = scope.ServiceProvider.GetRequiredService<KarimDoorsDbContext>();
     await dbContext.Database.EnsureCreatedAsync();

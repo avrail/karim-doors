@@ -20,7 +20,13 @@ public static class DependencyInjection
         {
             if (string.Equals(provider, "SqlServer", StringComparison.OrdinalIgnoreCase))
             {
-                options.UseSqlServer(configuration.GetConnectionString("SqlServer"));
+                var connectionString = configuration.GetConnectionString("SqlServer");
+                if (string.IsNullOrWhiteSpace(connectionString))
+                {
+                    throw new InvalidOperationException("ConnectionStrings:SqlServer is required for the SQL Server provider.");
+                }
+
+                options.UseSqlServer(connectionString);
             }
             else
             {

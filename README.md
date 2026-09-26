@@ -125,7 +125,16 @@ Change the provider in `appsettings.Development.json` or a local configuration f
 }
 ```
 
-For production, use EF Core migrations instead of `EnsureCreated` and keep the connection string outside source control.
+For production, set `Database__Provider=SqlServer` and provide `ConnectionStrings__SqlServer` through the deployment environment or a secret store. The application does not create or migrate a production database at startup. Apply the EF Core migration before starting it. For example, with Windows authentication on the application host:
+
+```powershell
+$env:Database__Provider = "SqlServer"
+$env:ConnectionStrings__SqlServer = "Server=ADB10CIC0W98361\MSSQLSERVER01;Database=KarimDoors;Integrated Security=True;TrustServerCertificate=True"
+dotnet tool restore
+dotnet tool run dotnet-ef database update --project src/KarimDoors.Infrastructure --startup-project src/KarimDoors.Web
+```
+
+The named SQL Server instance and database name in this example are deployment-specific. Use a dedicated SQL login if the application host cannot use Windows authentication. Store its password in the deployment secret store, never in Git. The initial migration creates an empty schema; the spreadsheet-based sample data is seeded only in Development.
 
 ## History model
 

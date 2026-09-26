@@ -45,7 +45,8 @@ public sealed class DatabaseSeeder(KarimDoorsDbContext dbContext)
             SourceReference = "Break Dowen -10-2022.xlsx / 2200×970-علام"
         };
 
-        version.Components.AddRange(
+        var components = new[]
+        {
             TimberRule("FRAME-V", "Frame vertical", "قائم الحلق", mouski, 10, 2m, DimensionSource.DoorHeight, 0m, null, 150m, 50m),
             TimberRule("FRAME-H", "Frame head", "رأس الحلق", mouski, 20, 1m, DimensionSource.DoorWidth, 0m, null, 150m, 50m),
             TimberRule("ARCH-V", "Architrave vertical", "قائم البر", mouski, 30, 4m, DimensionSource.DoorHeight, 80m, null, 75m, 25m),
@@ -76,7 +77,12 @@ public sealed class DatabaseSeeder(KarimDoorsDbContext dbContext)
                 WidthOffsetMm = -70m
             },
             SurfaceRule("PAINT", "Paint materials", "خامات دهانات", paint, 170, 1.20m),
-            QuantityRule("PACKAGING", "Packaging cardboard", "كارتون تغليف", packaging, 180, 2.3m));
+            QuantityRule("PACKAGING", "Packaging cardboard", "كارتون تغليف", packaging, 180, 2.3m)
+        };
+        foreach (var component in components)
+        {
+            version.Components.Add(component);
+        }
 
         dbContext.DoorTemplates.Add(template);
 
