@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../KarimDoors.Domain/KarimDoors.Domain.csproj" />
+    <ProjectReference Include="../KarimDoors.Application/KarimDoors.Application.csproj" />
+  </ItemGroup>
+</Project>
