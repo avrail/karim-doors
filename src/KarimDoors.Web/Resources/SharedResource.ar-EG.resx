@@ -195,6 +195,7 @@
   <data name="Customer" xml:space="preserve"><value>العميل</value></data>
   <data name="Project" xml:space="preserve"><value>المشروع</value></data>
   <data name="Door items" xml:space="preserve"><value>بنود الأبواب</value></data>
+  <data name="Add another door" xml:space="preserve"><value>إضافة باب آخر</value></data>
   <data name="Select a door" xml:space="preserve"><value>اختر بابًا</value></data>
   <data name="No quotations yet." xml:space="preserve"><value>لا توجد عروض أسعار بعد.</value></data>
   <data name="Number" xml:space="preserve"><value>الرقم</value></data>
