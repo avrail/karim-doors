@@ -7,6 +7,7 @@ public sealed record DoorTemplateOption(
     int ProjectId,
     int WidthMm,
     int HeightMm,
-    bool ReferenceSizeOnly);
+    bool ReferenceSizeOnly,
+    string PricingProfileCode);
 
 public sealed record PricingProjectOption(int Id, string Code, string Name);

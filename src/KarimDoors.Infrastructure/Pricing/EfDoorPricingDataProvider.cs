@@ -36,11 +36,11 @@ public sealed class EfDoorPricingDataProvider(KarimDoorsDbContext dbContext) : I
                 $"{request.DoorTemplateCode} is validated only at {templateVersion.DefaultWidthMm} × {templateVersion.DefaultHeightMm} mm.");
         }
 
-        if (request.PricingProfileCode.StartsWith("WB-", StringComparison.Ordinal) &&
+        if (template.PricingProfileCode is not null && request.PricingProfileCode != template.PricingProfileCode)
+            throw new InvalidOperationException("This door requires its assigned pricing profile.");
+        if (template.PricingProfileCode is null && request.PricingProfileCode.StartsWith("WB-", StringComparison.Ordinal) &&
             request.PricingProfileCode != $"WB-{template.Code}")
             throw new InvalidOperationException("The workbook pricing profile belongs to a different door reference case.");
-        if (templateVersion.ReferenceSizeOnly && request.PricingProfileCode != $"WB-{template.Code}")
-            throw new InvalidOperationException("This door reference case requires its matching workbook pricing profile.");
 
         var profile = await dbContext.PricingProfiles
             .AsNoTracking()

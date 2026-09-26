@@ -40,7 +40,8 @@ public sealed class DatabaseSeeder(KarimDoorsDbContext dbContext)
         {
             Code = "HA-D04",
             NameEn = "Hassan Allam D04",
-            NameAr = "حسن علام D04"
+            NameAr = "حسن علام D04",
+            PricingProfileCode = "HA-2022"
         };
 
         var version = new DoorTemplateVersion

@@ -16,7 +16,7 @@ public sealed class PricingLookupService(KarimDoorsDbContext dbContext) : IPrici
     public async Task<IReadOnlyList<DoorTemplateOption>> GetDoorTemplatesAsync(CancellationToken cancellationToken = default)
     {
         var doors = await dbContext.DoorTemplates.AsNoTracking()
-            .Where(x => x.IsActive && x.ProjectId != null)
+            .Where(x => x.IsActive && x.ProjectId != null && x.PricingProfileCode != null)
             .Include(x => x.Versions)
             .OrderBy(x => x.Code)
             .ToListAsync(cancellationToken);
@@ -24,7 +24,7 @@ public sealed class PricingLookupService(KarimDoorsDbContext dbContext) : IPrici
         {
             var version = x.Versions.OrderByDescending(v => v.Version).First();
             return new DoorTemplateOption(x.Code, x.NameEn, x.NameAr, x.ProjectId!.Value,
-                version.DefaultWidthMm, version.DefaultHeightMm, version.ReferenceSizeOnly);
+                version.DefaultWidthMm, version.DefaultHeightMm, version.ReferenceSizeOnly, x.PricingProfileCode!);
         }).ToList();
     }
 

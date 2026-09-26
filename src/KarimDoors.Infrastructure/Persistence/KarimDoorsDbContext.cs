@@ -49,6 +49,7 @@ public sealed class KarimDoorsDbContext(DbContextOptions<KarimDoorsDbContext> op
             entity.HasIndex(x => x.ProjectId);
             entity.HasOne(x => x.Project).WithMany().HasForeignKey(x => x.ProjectId).OnDelete(DeleteBehavior.Restrict);
             entity.Property(x => x.Code).HasMaxLength(50);
+            entity.Property(x => x.PricingProfileCode).HasMaxLength(50);
             entity.Property(x => x.NameEn).HasMaxLength(200);
             entity.Property(x => x.NameAr).HasMaxLength(200);
         });

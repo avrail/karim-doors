@@ -47,9 +47,11 @@ foreach (var item in document.RootElement.GetProperty("cases").EnumerateArray())
     if (await db.DoorTemplates.AnyAsync(x => x.Code == code))
     {
         var existing = await db.DoorTemplates.SingleAsync(x => x.Code == code);
-        if (existing.ProjectId == null)
+        if (existing.ProjectId == null || existing.PricingProfileCode == null)
         {
-            existing.ProjectId = projectIds[S(item, "customer")];
+            existing.ProjectId ??= projectIds[S(item, "customer")];
+            existing.PricingProfileCode ??= code == "HA-D04" ? "HA-2022" : $"WB-{code}";
+            existing.QuoteRoundingDigits = I(item, "quoteRoundingDigits");
             await db.SaveChangesAsync();
             db.ChangeTracker.Clear();
         }
@@ -75,6 +77,8 @@ foreach (var item in document.RootElement.GetProperty("cases").EnumerateArray())
         {
             Code = code,
             ProjectId = projectIds[customer],
+            PricingProfileCode = profileCode,
+            QuoteRoundingDigits = I(item, "quoteRoundingDigits"),
             NameEn = $"{customer} {code[(customer.Length + 1)..]}",
             NameAr = $"{(customer == "RED" ? "ريدكون" : "حسن علام")} {code[(customer.Length + 1)..]}",
             IsActive = true

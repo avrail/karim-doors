@@ -40,9 +40,7 @@ public sealed class PricingController(
 
         try
         {
-            // Historical workbook cases have one matching pricing profile per door.
-            var profileCode = model.DoorTemplateCode == "HA-D04"
-                ? "HA-2022" : $"WB-{model.DoorTemplateCode}";
+            var profileCode = selected!.PricingProfileCode;
             var request = new PricingRequest(
                 model.DoorTemplateCode,
                 profileCode,

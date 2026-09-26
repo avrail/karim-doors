@@ -45,7 +45,8 @@ public sealed class QuotationsController(KarimDoorsDbContext db, IDoorPricingSer
                 var version = door.Versions.Where(x => x.EffectiveFromUtc <= date && (x.EffectiveToUtc == null || x.EffectiveToUtc > date))
                     .OrderByDescending(x => x.Version).FirstOrDefault()
                     ?? throw new InvalidOperationException($"Door {line.DoorCode} has no current price.");
-                var profile = line.DoorCode == "HA-D04" ? "HA-2022" : $"WB-{line.DoorCode}";
+                var profile = door.PricingProfileCode
+                    ?? throw new InvalidOperationException($"Door {line.DoorCode} has no pricing profile.");
                 var price = await pricing.CalculateAsync(new PricingRequest(door.Code, profile,
                     version.DefaultWidthMm, version.DefaultHeightMm, line.Quantity, date), ct);
                 results.Add((door, line, price));
@@ -87,10 +88,7 @@ public sealed class QuotationsController(KarimDoorsDbContext db, IDoorPricingSer
         quote.Revisions.Add(revision);
         foreach (var (door, line, price) in results)
         {
-            // The workbook rounds Redcon quoted unit prices to whole EGP; Hassan keeps cents.
-            var quoted = door.Code.StartsWith("RED-", StringComparison.Ordinal)
-                ? decimal.Round(price.UnitCalculatedPrice, 0, MidpointRounding.AwayFromZero)
-                : price.UnitCalculatedPrice;
+            var quoted = decimal.Round(price.UnitCalculatedPrice, door.QuoteRoundingDigits, MidpointRounding.AwayFromZero);
             var item = new QuotationItem
             {
                 QuotationRevision = revision,
@@ -100,7 +98,7 @@ public sealed class QuotationsController(KarimDoorsDbContext db, IDoorPricingSer
                 Quantity = line.Quantity,
                 CalculatedUnitPrice = price.UnitCalculatedPrice,
                 OverrideUnitPrice = quoted == price.UnitCalculatedPrice ? null : quoted,
-                OverrideReason = quoted == price.UnitCalculatedPrice ? null : "Workbook quotation rounding: whole EGP",
+                OverrideReason = quoted == price.UnitCalculatedPrice ? null : $"Quotation rounding: {door.QuoteRoundingDigits} decimal places",
             };
             item.Snapshot = new CalculationSnapshot
             {

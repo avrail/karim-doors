@@ -1,0 +1,90 @@
+@using KarimDoors.Domain.Enums
+@model CreateDoorViewModel
+@{ ViewData["Title"] = "Add door model"; }
+
+<div class="page-intro">
+    <div><a class="back-link" asp-action="Index">@L["Door catalog"]</a><h1>@L["Add door model"]</h1><p>@L["Enter the door model and its complete cost breakdown."]</p></div>
+</div>
+
+<section class="panel form-panel">
+    <form asp-action="Create" method="post" class="form-stack">
+        <div asp-validation-summary="All" class="validation-summary"></div>
+        <h2>@L["Door details"]</h2>
+        <div class="field">
+            <label asp-for="ProjectId">@L["Project"]</label>
+            <select asp-for="ProjectId">
+                <option value="0">@L["Select a project"]</option>
+                @foreach (var project in Model.Projects)
+                {
+                    <option value="@project.Id">@(System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar" ? project.Code == "RED-2022" ? "ريدكون" : project.Code == "SOURCE-2022" ? "حسن علام" : project.Name : project.Name)</option>
+                }
+            </select>
+            <span asp-validation-for="ProjectId"></span>
+        </div>
+        <div class="field"><label asp-for="Code">@L["Code"]</label><input asp-for="Code" maxlength="30" placeholder="RED-D05-950" /><span asp-validation-for="Code"></span><small>@L["Use a unique code such as RED-D05-950."]</small></div>
+        <div class="form-grid two">
+            <div class="field"><label asp-for="NameEn">@L["English name"]</label><input asp-for="NameEn" maxlength="200" /><span asp-validation-for="NameEn"></span></div>
+            <div class="field"><label asp-for="NameAr">@L["Arabic name"]</label><input asp-for="NameAr" maxlength="200" dir="rtl" /><span asp-validation-for="NameAr"></span></div>
+        </div>
+        <div class="form-grid two">
+            <div class="field"><label asp-for="WidthMm">@L["Width (mm)"]</label><input asp-for="WidthMm" type="number" min="300" max="5000" /><span asp-validation-for="WidthMm"></span></div>
+            <div class="field"><label asp-for="HeightMm">@L["Height (mm)"]</label><input asp-for="HeightMm" type="number" min="300" max="5000" /><span asp-validation-for="HeightMm"></span></div>
+        </div>
+        <div class="field"><label asp-for="FireRatingMinutes">@L["Fire rating (minutes)"]</label><input asp-for="FireRatingMinutes" type="number" min="0" max="240" /><span asp-validation-for="FireRatingMinutes"></span><small>@L["Enter 0 for a standard non-fire door."]</small></div>
+
+        <h2>@L["Cost components"]</h2>
+        <p>@L["Enter the measurement used by each component for one door at the dimensions above."]</p>
+        <div id="door-components">
+        @for (var i = 0; i < Model.Components.Count; i++)
+        {
+            <div class="panel door-component-row" style="padding:1rem;margin-bottom:1rem">
+                <strong>@L["Component"] <span class="component-number">@(i + 1)</span></strong>
+                <div class="form-grid two">
+                    <div class="field"><label>@L["Code"]</label><input asp-for="Components[i].Code" maxlength="15" placeholder="FRAME-V" /><span asp-validation-for="Components[i].Code"></span></div>
+                    <div class="field"><label>@L["Material category"]</label><select asp-for="Components[i].Category">@foreach (var category in Enum.GetValues<MaterialCategory>()) { <option value="@category">@L[category.ToString()]</option> }</select></div>
+                    <div class="field"><label>@L["English name"]</label><input asp-for="Components[i].NameEn" maxlength="200" /><span asp-validation-for="Components[i].NameEn"></span></div>
+                    <div class="field"><label>@L["Arabic name"]</label><input asp-for="Components[i].NameAr" maxlength="200" dir="rtl" /></div>
+                    <div class="field"><label>@L["Unit"]</label><select asp-for="Components[i].Unit">@foreach (var unit in Enum.GetValues<MaterialUnit>()) { <option value="@unit">@L[unit.ToString()]</option> }</select><span asp-validation-for="Components[i].Unit"></span></div>
+                    <div class="field"><label>@L["Measurement per door"]</label><input asp-for="Components[i].Measurement" type="number" min="0.000001" step="0.000001" /><span asp-validation-for="Components[i].Measurement"></span></div>
+                    <div class="field"><label>@L["Unit price"] (EGP)</label><input asp-for="Components[i].UnitPrice" type="number" min="0.0001" step="0.0001" /><span asp-validation-for="Components[i].UnitPrice"></span></div>
+                    <div class="field"><label>@L["Waste"] %</label><input asp-for="Components[i].WastePercentage" type="number" min="0" max="100" step="0.01" /><span asp-validation-for="Components[i].WastePercentage"></span></div>
+                </div>
+            </div>
+        }
+        </div>
+        <button class="btn" type="button" id="add-component">@L["Add component"]</button>
+
+        <h2>@L["Additional costs and margins"]</h2>
+        <div class="form-grid two">
+            <div class="field"><label asp-for="ManufacturingCost">@L["Manufacturing"] (EGP)</label><input asp-for="ManufacturingCost" type="number" min="0" step="0.01" /></div>
+            <div class="field"><label asp-for="TransportCost">@L["Transport"] (EGP)</label><input asp-for="TransportCost" type="number" min="0" step="0.01" /></div>
+            <div class="field"><label asp-for="InstallationCost">@L["Installation"] (EGP)</label><input asp-for="InstallationCost" type="number" min="0" step="0.01" /></div>
+            <div class="field"><label asp-for="AdministrativePercentage">@L["Administrative percentage"] %</label><input asp-for="AdministrativePercentage" type="number" min="0" max="100" step="0.01" /></div>
+            <div class="field"><label asp-for="ProfitPercentage">@L["Profit percentage"] %</label><input asp-for="ProfitPercentage" type="number" min="0" max="100" step="0.01" /></div>
+            <div class="field"><label asp-for="QuoteRoundingDigits">@L["Quotation rounding"]</label><select asp-for="QuoteRoundingDigits"><option value="2">@L["Two decimals"]</option><option value="0">@L["Whole EGP"]</option></select></div>
+        </div>
+        <div class="warning-note"><strong>@L["Reference dimensions"]</strong><span>@L["This cost breakdown applies only to the dimensions entered above."]</span></div>
+        <button class="btn primary" type="submit">@L["Save door model and pricing"]</button>
+    </form>
+</section>
+
+@section Scripts {
+<script>
+document.getElementById('add-component').addEventListener('click', () => {
+    const container = document.getElementById('door-components');
+    const index = container.querySelectorAll('.door-component-row').length;
+    const row = container.querySelector('.door-component-row').cloneNode(true);
+    row.querySelector('.component-number').textContent = index + 1;
+    row.querySelectorAll('[name]').forEach(input => {
+        input.name = input.name.replace(/Components\[\d+\]/, `Components[${index}]`);
+        input.id = input.id.replace(/Components_\d+__/, `Components_${index}__`);
+        input.value = input.tagName === 'SELECT' ? input.options[0].value : '';
+    });
+    row.querySelectorAll('[data-valmsg-for]').forEach(message => {
+        message.dataset.valmsgFor = message.dataset.valmsgFor.replace(/Components\[\d+\]/, `Components[${index}]`);
+        message.textContent = '';
+    });
+    container.appendChild(row);
+});
+</script>
+}

@@ -210,6 +210,44 @@
   <data name="Quoted unit price" xml:space="preserve"><value>سعر الوحدة المعروض</value></data>
   <data name="Quoted total" xml:space="preserve"><value>إجمالي العرض</value></data>
   <data name="Door catalog" xml:space="preserve"><value>كتالوج الأبواب</value></data>
+  <data name="Add door model" xml:space="preserve"><value>إضافة نوع باب</value></data>
+  <data name="Add the model under its project with its standard dimensions." xml:space="preserve"><value>أضف نوع الباب تحت مشروعه مع مقاسه الأساسي.</value></data>
+  <data name="Select a project" xml:space="preserve"><value>اختر المشروع</value></data>
+  <data name="Select an active project." xml:space="preserve"><value>اختر مشروعًا نشطًا.</value></data>
+  <data name="This door code already exists." xml:space="preserve"><value>كود الباب موجود بالفعل.</value></data>
+  <data name="English name" xml:space="preserve"><value>الاسم بالإنجليزية</value></data>
+  <data name="Arabic name" xml:space="preserve"><value>الاسم بالعربية</value></data>
+  <data name="Fire rating (minutes)" xml:space="preserve"><value>مقاومة الحريق (بالدقائق)</value></data>
+  <data name="Enter 0 for a standard non-fire door." xml:space="preserve"><value>أدخل 0 للباب العادي غير المقاوم للحريق.</value></data>
+  <data name="Use a unique code such as RED-D05-950." xml:space="preserve"><value>استخدم كودًا فريدًا مثل RED-D05-950.</value></data>
+  <data name="Pricing setup required" xml:space="preserve"><value>بيانات التسعير مطلوبة</value></data>
+  <data name="The new model appears in the catalog. Add its cost breakdown before using it in the calculator." xml:space="preserve"><value>سيظهر النوع في الكتالوج. أضف تفاصيل تكلفته قبل استخدامه في الحاسبة.</value></data>
+  <data name="Save door model" xml:space="preserve"><value>حفظ نوع الباب</value></data>
+  <data name="Door model added. Pricing setup is required before calculation." xml:space="preserve"><value>تمت إضافة نوع الباب. يلزم إعداد التكلفة قبل حساب سعره.</value></data>
+  <data name="Enter the door model and its complete cost breakdown." xml:space="preserve"><value>أدخل نوع الباب وتفاصيل تكلفته كاملة.</value></data>
+  <data name="Door details" xml:space="preserve"><value>بيانات الباب</value></data>
+  <data name="Cost components" xml:space="preserve"><value>بنود التكلفة</value></data>
+  <data name="Enter the measurement used by each component for one door at the dimensions above." xml:space="preserve"><value>أدخل كمية أو قياس كل بند لباب واحد بالمقاس الموضح أعلاه.</value></data>
+  <data name="Material category" xml:space="preserve"><value>فئة المادة</value></data>
+  <data name="Measurement per door" xml:space="preserve"><value>الكمية أو القياس لكل باب</value></data>
+  <data name="Add component" xml:space="preserve"><value>إضافة بند تكلفة</value></data>
+  <data name="Additional costs and margins" xml:space="preserve"><value>المصاريف والنسب الإضافية</value></data>
+  <data name="Administrative percentage" xml:space="preserve"><value>نسبة المصاريف الإدارية</value></data>
+  <data name="Profit percentage" xml:space="preserve"><value>نسبة الربح</value></data>
+  <data name="Quotation rounding" xml:space="preserve"><value>تقريب سعر العرض</value></data>
+  <data name="Two decimals" xml:space="preserve"><value>منزلتان عشريتان</value></data>
+  <data name="Whole EGP" xml:space="preserve"><value>جنيه كامل</value></data>
+  <data name="Reference dimensions" xml:space="preserve"><value>مقاس مرجعي</value></data>
+  <data name="This cost breakdown applies only to the dimensions entered above." xml:space="preserve"><value>تنطبق تفاصيل التكلفة هذه على المقاس المدخل أعلاه فقط.</value></data>
+  <data name="Save door model and pricing" xml:space="preserve"><value>حفظ نوع الباب وتسعيره</value></data>
+  <data name="Door model and pricing saved." xml:space="preserve"><value>تم حفظ نوع الباب وتسعيره.</value></data>
+  <data name="Add at least one cost component." xml:space="preserve"><value>أضف بند تكلفة واحدًا على الأقل.</value></data>
+  <data name="Each component needs a unique code of up to 15 letters, numbers, or hyphens." xml:space="preserve"><value>يحتاج كل بند إلى كود فريد لا يتجاوز 15 حرفًا أو رقمًا أو شرطة.</value></data>
+  <data name="Enter both component names (up to 200 characters)." xml:space="preserve"><value>أدخل اسمي البند بالعربية والإنجليزية، بحد أقصى 200 حرف.</value></data>
+  <data name="Choose a valid category and unit." xml:space="preserve"><value>اختر فئة ووحدة صحيحتين.</value></data>
+  <data name="Enter a positive measurement with at most six decimal places." xml:space="preserve"><value>أدخل قياسًا موجبًا بحد أقصى ست منازل عشرية.</value></data>
+  <data name="Enter a positive unit price with at most four decimal places." xml:space="preserve"><value>أدخل سعر وحدة موجبًا بحد أقصى أربع منازل عشرية.</value></data>
+  <data name="Waste must be between 0 and 100 percent." xml:space="preserve"><value>يجب أن تتراوح نسبة الهالك بين 0 و100٪.</value></data>
   <data name="Reference cases use the workbook dimensions shown below." xml:space="preserve"><value>الحالات المرجعية تعتمد المقاسات الموضحة من ملف الإكسل.</value></data>
   <data name="Code" xml:space="preserve"><value>الكود</value></data>
   <data name="Fire rating" xml:space="preserve"><value>مقاومة الحريق</value></data>

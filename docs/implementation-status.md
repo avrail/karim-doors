@@ -6,6 +6,7 @@
 - Door catalog with inactive placeholders for models lacking detailed cost sheets.
 - Multi-item draft quotations with saved calculation snapshots and workbook quotation rounding.
 - Door templates linked to their source projects; the calculator selects a project before its door model and derives the matching pricing profile.
+- Manual door model creation under an existing project, with names, dimensions, fire rating, component measurements and prices, fees, margins, and quotation rounding. Valid entries become available to the calculator at their reference dimensions.
 
 - .NET 10 layered solution.
 - Domain entities for materials, pricing history, door templates, pricing profiles, customers, projects, quotations, snapshots, settings and audit logs.
