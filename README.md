@@ -104,7 +104,7 @@ Development uses the `KarimDoors` database on `ADB10CIC0W98361\MSSQLSERVER01` wi
 
 ## Production SQL Server
 
-Provide `ConnectionStrings__SqlServer` through the deployment environment or a secret store. The application does not create or migrate a production database at startup. Apply the EF Core migration before starting it. For example, with Windows authentication on the application host:
+The base configuration connects to the named SQL Server instance with Windows authentication. Set `ConnectionStrings__SqlServer` through the deployment environment or a secret store to override it for another application host or database. The application does not create or migrate a production database at startup. Apply the EF Core migration before starting it. For example, with Windows authentication on the application host:
 
 ```powershell
 $env:ConnectionStrings__SqlServer = "Server=ADB10CIC0W98361\MSSQLSERVER01;Database=KarimDoors;Integrated Security=True;TrustServerCertificate=True"
